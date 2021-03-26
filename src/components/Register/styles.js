@@ -34,7 +34,7 @@ export const useStyles = createUseStyles({
     border: "1px solid black",
     marginTop: "2rem",
     "&:focus": {
-      border: "2px solid #4CABFF",
+      border: `2px solid ${Colors.outlineBlue}`,
     },
   },
 

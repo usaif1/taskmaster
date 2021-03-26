@@ -1,6 +1,10 @@
 //dependencies
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+
+//actions
+import { signup, getCurrentUser } from "../../actions/authActions";
+import { capitalize, validEmail } from "../../actions/general";
 
 //imports
 import CentralHeading from "../common/CentralHeading/CentralHeading";
@@ -8,19 +12,36 @@ import CentralSubheading from "../common/CentralSubheading/CentralSubheading";
 import FormButton from "../common/FormButton/FormButton";
 import { useStyles } from "./styles";
 
-const Register = () => {
+const Register = (props) => {
   const classes = useStyles();
   const location = useLocation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const subheading = location.pathname.match(/[a-zA-Z]+/g);
 
-  // function to capitalize first letter of string
-  const capitalize = (subheading) => {
-    var splitStr = subheading.toLowerCase().split(" ");
-    for (var i = 0; i < splitStr.length; i++) {
-      splitStr[i] =
-        splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  useEffect(() => {
+    getCurrentUser(props.history);
+
+    //eslint-disable-next-line
+  }, []);
+
+  //onClick handler
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    if (!email) {
+      alert("Please Enter A Valid Email!");
+      return;
     }
-    return splitStr.join(" ");
+    if (!password) {
+      alert("Please Enter A Valid Password!");
+      return;
+    }
+    if (validEmail(email)) {
+      signup(email, password);
+    } else {
+      return null;
+    }
   };
 
   return (
@@ -31,18 +52,21 @@ const Register = () => {
           title={`${capitalize(subheading[0])}`}
           size={`2rem`}
         />
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={onSubmitHandler}>
           <div className={classes.inputContainer}>
-            <input type="text" className={classes.input} placeholder="Email" />
             <input
-              type="password"
+              type="text"
               className={classes.input}
-              placeholder="Password"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
               className={classes.input}
-              placeholder="Enter Password Again"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormButton text={"some text"}>
               {capitalize(subheading[0])}
