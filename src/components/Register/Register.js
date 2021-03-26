@@ -10,6 +10,8 @@ import { capitalize, validEmail } from "../../actions/general";
 import CentralHeading from "../common/CentralHeading/CentralHeading";
 import CentralSubheading from "../common/CentralSubheading/CentralSubheading";
 import FormButton from "../common/FormButton/FormButton";
+import SocialCard from "./SocialCard";
+import SocialProviders from "./SocialProviders.json";
 import { useStyles } from "./styles";
 
 const Register = (props) => {
@@ -71,6 +73,17 @@ const Register = (props) => {
             <FormButton text={"some text"}>
               {capitalize(subheading[0])}
             </FormButton>
+            <hr className={classes.hr} />
+            {SocialProviders.map((provider) => {
+              return (
+                <SocialCard
+                  key={provider.id}
+                  name={provider.name}
+                  logo={provider.logo}
+                  message={provider.message}
+                />
+              );
+            })}
           </div>
         </form>
       </div>

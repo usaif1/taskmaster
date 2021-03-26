@@ -38,6 +38,25 @@ export const useStyles = createUseStyles({
     },
   },
 
+  hr: {
+    margin: "5rem auto",
+    width: window.innerWidth / 8,
+    borderTop: `0.1px solid ${Colors.borderLight}`,
+  },
+
+  /* Social Card Styles */
+  cardContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    border: `1px solid ${Colors.borderLight}`,
+    padding: "0.5rem",
+    boxShadow: `1px 1px 3px ${Colors.boxShadow}`,
+    cursor: "pointer",
+    borderRadius: "0.8rem",
+  },
+
   "@media only screen and (max-width: 600px)": {
     formContainer: {
       width: window.innerWidth / 1.3,
@@ -47,6 +66,13 @@ export const useStyles = createUseStyles({
     },
     input: {
       fontSize: "1.6rem",
+    },
+    hr: {
+      width: window.innerWidth / 2.5,
+    },
+    cardContainer: {
+      width: "unset",
+      padding: "0.2rem",
     },
   },
 });
