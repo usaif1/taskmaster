@@ -8,7 +8,7 @@ const CentralHeading = ({ title, size = `3rem` }) => {
   const classes = useStyles(size);
 
   return (
-    <div className={classes.container}>
+    <div style={{ width: "100vw" }}>
       <h1 className={classes.heading}>{title}</h1>
     </div>
   );
