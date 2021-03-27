@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 //actions
-import { signup, getCurrentUser } from "../../actions/authActions";
+import { signup, getCurrentUser, googleLogin } from "../../actions/authActions";
 import { capitalize, validEmail } from "../../actions/general";
 
 //imports
@@ -28,7 +28,7 @@ const Register = (props) => {
     //eslint-disable-next-line
   }, []);
 
-  //onClick handler
+  //form onSubmit handler
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (!email) {
@@ -44,6 +44,11 @@ const Register = (props) => {
     } else {
       return null;
     }
+  };
+
+  //social card onClick handler
+  const onClickHandler = () => {
+    googleLogin();
   };
 
   return (
@@ -81,6 +86,7 @@ const Register = (props) => {
                   name={provider.name}
                   logo={provider.logo}
                   message={provider.message}
+                  onClickHandler={onClickHandler}
                 />
               );
             })}
