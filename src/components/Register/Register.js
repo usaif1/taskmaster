@@ -21,6 +21,7 @@ const Register = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
 
   const subheading = location.pathname.match(/[a-zA-Z]+/g);
 
@@ -53,7 +54,8 @@ const Register = (props) => {
 
   //social card onClick handler
   const onClickHandler = () => {
-    googleLogin(props.history);
+    setLoading2(true);
+    googleLogin(props.history, setLoading2);
   };
 
   return (
@@ -98,6 +100,7 @@ const Register = (props) => {
                   logo={provider.logo}
                   message={provider.message}
                   onClickHandler={onClickHandler}
+                  loading={loading2}
                 />
               );
             })}

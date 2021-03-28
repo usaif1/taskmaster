@@ -47,7 +47,7 @@ export const isUserSignedIn = () => {
 };
 
 //google login
-export const googleLogin = (history) => {
+export const googleLogin = (history, setLoading2) => {
   firebase
     .auth()
     .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -57,6 +57,7 @@ export const googleLogin = (history) => {
       history.push("/");
     })
     .catch((err) => {
+      setLoading2(false);
       alert("Something Went Wrong");
     });
 };
