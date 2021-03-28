@@ -1,17 +1,23 @@
 //dependencies
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Homepage from "./pages/Homepage";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+
+//imports
+import routes from "./RouteDetails";
+import Navbar from "./components/Navbar/Navbar";
 
 const Routes = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Homepage} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
+        {routes.map((route) => {
+          return (
+            <Route exact path={`${route.path}`} id="outer-container">
+              {route.navbar ? <Navbar /> : null}
+              <div id="page-wrap">{route.component}</div>
+            </Route>
+          );
+        })}
       </Switch>
     </Router>
   );
