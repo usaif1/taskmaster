@@ -64,10 +64,12 @@ export const googleLogin = (setLoading) => {
       } else {
         try {
           user = await firebase.auth().signInWithPopup(googleProvider);
+          console.log(user);
         } catch (err) {
           alert("Something Went Wrong!");
         }
       }
+      console.log("user --> ", user);
       localStorage.setItem("userId", user.user.uid);
       setLoading(true);
     })
