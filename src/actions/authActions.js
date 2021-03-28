@@ -16,9 +16,9 @@ export const signup = async (email, password, setLoading) => {
         const newUser = await firebase
           .auth()
           .createUserWithEmailAndPassword(email, password);
-        console.log(newUser);
-        localStorage.setItem("userId", newUser.user.uid);
+
         setLoading(true);
+        localStorage.setItem("userId", newUser.user.uid);
       } catch (err) {
         alert("Something went wrong!");
         return;
@@ -53,24 +53,8 @@ export const googleLogin = (setLoading) => {
     .auth()
     .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(async () => {
-      let user;
-      if (isMobile()) {
-        try {
-          // user = await firebase.auth().signInWithRedirect(googleProvider);
-          user = await firebase.auth().signInWithPopup(googleProvider);
-          console.log("mobile user -->", user);
-        } catch (err) {
-          alert("Something Went Wrong!");
-        }
-      } else {
-        try {
-          user = await firebase.auth().signInWithPopup(googleProvider);
-          console.log(user);
-        } catch (err) {
-          alert("Something Went Wrong!");
-        }
-      }
-      console.log("user --> ", user);
+      const user = await firebase.auth().signInWithPopup(googleProvider);
+      setLoading(true);
       localStorage.setItem("userId", user.user.uid);
       setLoading(true);
     })
