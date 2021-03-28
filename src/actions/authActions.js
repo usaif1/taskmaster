@@ -4,10 +4,9 @@ import "firebase/auth";
 
 //imports
 import { googleProvider } from "../configs/firebase";
-// import { isMobile } from "./general";
 
 //user signup - email & password
-export const signup = async (email, password, history) => {
+export const signup = async (email, password, history, setLoading) => {
   firebase
     .auth()
     .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -20,6 +19,7 @@ export const signup = async (email, password, history) => {
         localStorage.setItem("userId", newUser.user.uid);
       } catch (err) {
         alert("Something went wrong!");
+        setLoading(false);
         return;
       }
     });

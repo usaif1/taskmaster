@@ -1,6 +1,7 @@
 //dependencies
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 //actions
 import { signup, isUserSignedIn, googleLogin } from "../../actions/authActions";
@@ -19,6 +20,7 @@ const Register = (props) => {
   const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const subheading = location.pathname.match(/[a-zA-Z]+/g);
 
@@ -42,7 +44,8 @@ const Register = (props) => {
       return;
     }
     if (validEmail(email)) {
-      signup(email, password, props.history);
+      setLoading(true);
+      signup(email, password, props.history, setLoading);
     } else {
       return null;
     }
@@ -69,6 +72,7 @@ const Register = (props) => {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <input
               type="password"
@@ -76,9 +80,14 @@ const Register = (props) => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <FormButton text={"some text"}>
-              {capitalize(subheading[0])}
+              {!loading ? (
+                capitalize(subheading[0])
+              ) : (
+                <ClipLoader color="#ffffff" size={10} />
+              )}
             </FormButton>
             <hr className={classes.hr} />
             {SocialProviders.map((provider) => {
