@@ -7,7 +7,7 @@ import { googleProvider } from "../configs/firebase";
 import { isMobile } from "./general";
 
 //user signup - email & password
-export const signup = async (email, password) => {
+export const signup = async (email, password, setLoading) => {
   firebase
     .auth()
     .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -16,8 +16,9 @@ export const signup = async (email, password) => {
         const newUser = await firebase
           .auth()
           .createUserWithEmailAndPassword(email, password);
-
         console.log(newUser);
+        localStorage.setItem("userId", newUser.user.uid);
+        setLoading(true);
       } catch (err) {
         alert("Something went wrong!");
         return;
@@ -26,39 +27,70 @@ export const signup = async (email, password) => {
 };
 
 //get current user
-export const getCurrentUser = (history) => {
+export const getCurrentUser = (setLoading) => {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      history.push("/");
+      setLoading(true);
     } else {
-      return false;
+      // No user is signed in.
+      setLoading(false);
     }
   });
 };
 
+//check if user is signed in
+export const isUserSignedIn = () => {
+  const user = localStorage.getItem("userId");
+  if (!user) {
+    return false;
+  }
+  return true;
+};
+
 //google login
-export const googleLogin = () => {
+export const googleLogin = (setLoading) => {
+  firebase
+    .auth()
+    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    .then(async () => {
+      let user;
+      if (isMobile()) {
+        try {
+          user = await firebase.auth().signInWithRedirect(googleProvider);
+        } catch (err) {
+          alert("Something Went Wrong!");
+        }
+      } else {
+        try {
+          user = await firebase.auth().signInWithPopup(googleProvider);
+        } catch (err) {
+          alert("Something Went Wrong!");
+        }
+      }
+      localStorage.setItem("userId", user.user.uid);
+      setLoading(true);
+    })
+    .catch((err) => {
+      alert("Something Went Wrong");
+    });
+};
+
+//logout user
+export const logout = (history) => {
   try {
     firebase
       .auth()
-      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-      .then(async () => {
-        let user;
-        if (isMobile()) {
-          user = await firebase.auth().signInWithRedirect(googleProvider);
-        } else {
-          user = await firebase.auth().signInWithPopup(googleProvider);
-        }
-        console.log("user --> ", user);
+      .signOut()
+      .then(() => {
+        alert("signed out");
+        localStorage.removeItem("userId");
+        history.push("/login");
       })
       .catch((err) => {
-        alert("Something Went Wrong Persistence");
-        console.log("err code --> ", err.code);
-        console.log("err msg -->", err.message);
+        alert("not signed out.. some err");
+        console.log(err);
       });
-  } catch (err) {
-    alert("Something Went Wrong!");
-    console.log("err code --> ", err.code);
-    console.log("err msg --> ", err.message);
+  } catch (error) {
+    alert("error in trycatch block");
   }
 };
