@@ -56,7 +56,8 @@ export const googleLogin = (setLoading) => {
       let user;
       if (isMobile()) {
         try {
-          user = await firebase.auth().signInWithRedirect(googleProvider);
+          // user = await firebase.auth().signInWithRedirect(googleProvider);
+          user = await firebase.auth().signInWithPopup(googleProvider);
           console.log("mobile user -->", user);
         } catch (err) {
           alert("Something Went Wrong!");
