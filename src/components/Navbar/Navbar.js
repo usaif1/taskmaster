@@ -1,13 +1,13 @@
 //dependencies
 import React from "react";
-import { slide as Menu } from "react-burger-menu";
+import { push as Menu } from "react-burger-menu";
 
 //imports
 import CentralHeading from "../common/CentralHeading/CentralHeading";
 
 const Navbar = () => {
   return (
-    <div>
+    <>
       <Menu
         styles={styles}
         width={250}
@@ -21,25 +21,17 @@ const Navbar = () => {
       <nav
         style={{
           display: "flex",
-          justifyContent: "space-between",
           alignItems: "center",
+          justifyContent: "space-between",
           width: window.innerWidth / 1.15,
           margin: "auto",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <CentralHeading title="TaskMaster" size="2.5rem" />
-          <p>About</p>
-          <button>Login</button>
-        </div>
+        <CentralHeading title="TaskMaster" size="2.5rem" />
+        <p>About</p>
+        <button>Login</button>
       </nav>
-    </div>
+    </>
   );
 };
 
@@ -75,6 +67,7 @@ var styles = {
     padding: "2.5em 1.5em 0",
     fontSize: "1.15em",
     overflowY: "hidden",
+    overflowX: "hidden",
   },
   bmMorphShape: {
     fill: "#373a47",
