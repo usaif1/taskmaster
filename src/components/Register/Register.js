@@ -19,23 +19,16 @@ const Register = (props) => {
   const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const subheading = location.pathname.match(/[a-zA-Z]+/g);
 
   useEffect(() => {
-    redirectIfUser();
+    if (isUserSignedIn()) {
+      return props.history.push("/");
+    }
 
     //eslint-disable-next-line
-  }, [loading]);
-
-  //redirect if user singed in
-  const redirectIfUser = () => {
-    console.log("is user signed in --> ", isUserSignedIn());
-    if (isUserSignedIn()) {
-      props.history.push("/");
-    }
-  };
+  }, []);
 
   //form onSubmit handler
   const onSubmitHandler = (e) => {
@@ -49,7 +42,7 @@ const Register = (props) => {
       return;
     }
     if (validEmail(email)) {
-      signup(email, password, setLoading);
+      signup(email, password, props.history);
     } else {
       return null;
     }
@@ -57,10 +50,10 @@ const Register = (props) => {
 
   //social card onClick handler
   const onClickHandler = () => {
-    googleLogin(setLoading);
+    googleLogin(props.history);
   };
 
-  return !loading ? (
+  return (
     <>
       <CentralHeading title={`TaskMaster`} size={`5rem`} />
       <div className={classes.formContainer}>
@@ -103,8 +96,6 @@ const Register = (props) => {
         </form>
       </div>
     </>
-  ) : (
-    "loading"
   );
 };
 

@@ -1,5 +1,6 @@
 //dependencies
 import React from "react";
+import { Link } from "react-router-dom";
 
 //actions
 import { logout } from "../../actions/authActions";
@@ -17,6 +18,9 @@ const Home = () => {
     <div>
       <Heading />
       <button onClick={onClickHandler}>Logout</button>
+      <Link to="/signup">
+        <p>Signup</p>
+      </Link>
     </div>
   );
 };

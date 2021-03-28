@@ -7,7 +7,7 @@ import { googleProvider } from "../configs/firebase";
 // import { isMobile } from "./general";
 
 //user signup - email & password
-export const signup = async (email, password, setLoading) => {
+export const signup = async (email, password, history) => {
   firebase
     .auth()
     .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -16,7 +16,7 @@ export const signup = async (email, password, setLoading) => {
         const newUser = await firebase
           .auth()
           .createUserWithEmailAndPassword(email, password);
-        setLoading(true);
+        history.push("/");
         localStorage.setItem("userId", newUser.user.uid);
       } catch (err) {
         alert("Something went wrong!");
@@ -47,15 +47,14 @@ export const isUserSignedIn = () => {
 };
 
 //google login
-export const googleLogin = (setLoading) => {
+export const googleLogin = (history) => {
   firebase
     .auth()
     .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(async () => {
       const user = await firebase.auth().signInWithPopup(googleProvider);
-      setLoading(true);
       localStorage.setItem("userId", user.user.uid);
-      setLoading(true);
+      history.push("/");
     })
     .catch((err) => {
       alert("Something Went Wrong");
@@ -63,21 +62,16 @@ export const googleLogin = (setLoading) => {
 };
 
 //logout user
-export const logout = (history) => {
-  try {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        alert("signed out");
-        localStorage.removeItem("userId");
-        history.push("/login");
-      })
-      .catch((err) => {
-        alert("not signed out.. some err");
-        console.log(err);
-      });
-  } catch (error) {
-    alert("error in trycatch block");
-  }
+export const logout = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      alert("signed out");
+      localStorage.removeItem("userId");
+    })
+    .catch((err) => {
+      alert("not signed out.. some err");
+      console.log(err);
+    });
 };
