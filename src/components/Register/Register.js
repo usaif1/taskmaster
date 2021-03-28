@@ -36,6 +36,9 @@ const Register = (props) => {
   //form onSubmit handler
   const onSubmitHandler = (e) => {
     e.preventDefault();
+
+    if (loading || loading2) return null;
+
     if (!email) {
       alert("Please Enter A Valid Email!");
       return;
@@ -55,6 +58,7 @@ const Register = (props) => {
   //social card onClick handler
   const onClickHandler = () => {
     setLoading2(true);
+    if (loading || loading2) return null;
     googleLogin(props.history, setLoading2);
   };
 
@@ -75,6 +79,7 @@ const Register = (props) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={loading || loading2}
             />
             <input
               type="password"
@@ -83,6 +88,7 @@ const Register = (props) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              disabled={loading || loading2}
             />
             <FormButton text={"some text"}>
               {!loading ? (
