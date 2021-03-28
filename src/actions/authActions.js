@@ -4,7 +4,7 @@ import "firebase/auth";
 
 //imports
 import { googleProvider } from "../configs/firebase";
-import { isMobile } from "./general";
+// import { isMobile } from "./general";
 
 //user signup - email & password
 export const signup = async (email, password, setLoading) => {
@@ -16,7 +16,6 @@ export const signup = async (email, password, setLoading) => {
         const newUser = await firebase
           .auth()
           .createUserWithEmailAndPassword(email, password);
-
         setLoading(true);
         localStorage.setItem("userId", newUser.user.uid);
       } catch (err) {
