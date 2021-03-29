@@ -2,8 +2,9 @@ import { createUseStyles } from "react-jss";
 
 export const useStyles = createUseStyles({
   subheading: {
-    fontSize: (size) => size,
+    fontSize: (styles) => styles.size,
     textAlign: "center",
+    color: (styles) => styles.color,
   },
 
   "@media only screen and (max-width: 600px)": {

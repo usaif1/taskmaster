@@ -1,13 +1,35 @@
 //dependencies
 import React from "react";
-import { push as Menu } from "react-burger-menu";
+import { slide as Menu } from "react-burger-menu";
+import { Link, useHistory, useLocation } from "react-router-dom";
+
+//actions
+import { isMobile } from "../../actions/general";
+import { isUserSignedIn, logout } from "../../actions/authActions";
 
 //imports
-import CentralHeading from "../common/CentralHeading/CentralHeading";
+import CentralSubheading from "../common/CentralSubheading/CentralSubheading";
+import OutlinedButton from "../common/OutlinedButton/OutlinedButton";
+import { Colors } from "../../utils/Colors";
+import { useStyles } from "./styles";
 
 const Navbar = () => {
+  const classes = useStyles();
+
+  const history = useHistory();
+  const location = useLocation();
+
+  //onclick handler
+  const onClickHandler = () => {
+    if (isUserSignedIn()) {
+      logout();
+    } else {
+      return location.pathname === "/login" ? null : history.push("/login");
+    }
+  };
+
   return (
-    <>
+    <div className={classes.container}>
       <Menu
         styles={styles}
         width={250}
@@ -18,20 +40,41 @@ const Navbar = () => {
         <li>Something</li>
         <li>Something</li>
       </Menu>
-      <nav
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          width: window.innerWidth / 1.15,
-          margin: "auto",
-        }}
-      >
-        <CentralHeading title="TaskMaster" size="2.5rem" />
-        <p>About</p>
-        <button>Login</button>
-      </nav>
-    </>
+      <div className={classes.navContainer}>
+        <nav className={classes.nav}>
+          <Link to="/" className={classes.link}>
+            <CentralSubheading title="TaskMaster" size="2.5rem" color="white" />
+          </Link>
+          {isMobile() ? null : (
+            <OutlinedButton
+              style={{
+                position: "fixed",
+                right: "10rem",
+                borderColor: "white",
+                fontSize: "1.6rem",
+                hover: {
+                  color: "#000000",
+                  background: "rgba(255, 255, 255)",
+                },
+              }}
+              onClickHandler={onClickHandler}
+            >
+              {isUserSignedIn() ? (
+                "Logout"
+              ) : (
+                <Link
+                  className={classes.link}
+                  style={{ color: "inherit" }}
+                  to="/signup"
+                >
+                  Login
+                </Link>
+              )}
+            </OutlinedButton>
+          )}
+        </nav>
+      </div>
+    </div>
   );
 };
 
@@ -40,13 +83,13 @@ export default Navbar;
 var styles = {
   bmBurgerButton: {
     position: "fixed",
-    width: "36px",
-    height: "30px",
-    left: "36px",
-    top: "36px",
+    width: isMobile() ? "33px" : "36px",
+    height: isMobile() ? "20px" : "30px",
+    left: isMobile() ? "25px" : "36px",
+    top: isMobile() ? "16px" : "23px",
   },
   bmBurgerBars: {
-    background: "#373a47",
+    background: "white",
   },
   bmBurgerBarsHover: {
     background: "#a90000",
@@ -63,7 +106,7 @@ var styles = {
     height: "100%",
   },
   bmMenu: {
-    background: "#373a47",
+    background: `${Colors.darkBg}`,
     padding: "2.5em 1.5em 0",
     fontSize: "1.15em",
     overflowY: "hidden",
