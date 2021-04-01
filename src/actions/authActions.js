@@ -57,6 +57,8 @@ export const googleLogin = (history, setLoading2) => {
       history.push("/");
     })
     .catch((err) => {
+      console.log("i'm the alert being triggered");
+      console.log("err --> ", err.message);
       setLoading2(false);
       alert("Something Went Wrong");
     });

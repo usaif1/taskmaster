@@ -1,6 +1,6 @@
 //dependencies
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
 //actions
@@ -24,12 +24,12 @@ const Register = (props) => {
   const [loading2, setLoading2] = useState(false);
 
   const subheading = location.pathname.match(/[a-zA-Z]+/g);
+  const history = useHistory();
 
   useEffect(() => {
     if (isUserSignedIn()) {
-      return props.history.push("/");
+      return history.push("/");
     }
-
     //eslint-disable-next-line
   }, []);
 
@@ -49,7 +49,7 @@ const Register = (props) => {
     }
     if (validEmail(email)) {
       setLoading(true);
-      signup(email, password, props.history, setLoading);
+      signup(email, password, history, setLoading);
     } else {
       return null;
     }
@@ -59,7 +59,7 @@ const Register = (props) => {
   const onClickHandler = () => {
     setLoading2(true);
     if (loading || loading2) return null;
-    googleLogin(props.history, setLoading2);
+    googleLogin(history, setLoading2);
   };
 
   return (
