@@ -15,16 +15,17 @@ import SocialCard from "./SocialCard";
 import SocialProviders from "./SocialProviders.json";
 import { useStyles } from "./styles";
 
-const Register = (props) => {
+const Register = () => {
   const classes = useStyles();
   const location = useLocation();
+  const history = useHistory();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
 
   const subheading = location.pathname.match(/[a-zA-Z]+/g);
-  const history = useHistory();
 
   useEffect(() => {
     if (isUserSignedIn()) {

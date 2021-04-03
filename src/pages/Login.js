@@ -3,10 +3,10 @@ import React from "react";
 //imports
 import Register from "../components/Register/Register";
 
-const Login = (props) => {
+const Login = () => {
   return (
     <div>
-      <Register history={props.history} />
+      <Register />
     </div>
   );
 };
