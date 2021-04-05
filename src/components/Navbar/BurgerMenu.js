@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 
 //actions
 import { isMobile } from "../../actions/general";
-import { isUserSignedIn } from "../../actions/authActions";
+import { isUserSignedIn, logout } from "../../actions/authActions";
 
 //imports
 import { links, mobileOnlyLinks } from "./NavbarLinks";
@@ -14,6 +14,10 @@ import { Colors } from "../../utils/Colors";
 import SolidButton from "../common/SolidButton/SolidButton";
 
 const BurgerMenu = () => {
+  const onClickHandler = () => {
+    logout();
+  };
+
   return (
     <>
       <Menu
@@ -38,6 +42,7 @@ const BurgerMenu = () => {
                 styles={{
                   bgColor: Colors.bgRed,
                 }}
+                onClickHandler={onClickHandler}
               >
                 Logout
               </SolidButton>
