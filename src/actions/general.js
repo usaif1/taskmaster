@@ -22,7 +22,6 @@ export const validEmail = (email) => {
 //check if device is mobile or not
 export const isMobile = () => {
   if (window.innerWidth <= 600) {
-    console.log("inner width", window.innerWidth);
     return true;
   } else {
     return false;

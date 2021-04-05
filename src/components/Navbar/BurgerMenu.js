@@ -1,5 +1,5 @@
 //imports
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { v4 as uuid } from "uuid";
 
@@ -14,8 +14,19 @@ import { Colors } from "../../utils/Colors";
 import SolidButton from "../common/SolidButton/SolidButton";
 
 const BurgerMenu = () => {
-  const onClickHandler = () => {
-    logout();
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {}, [open]);
+
+  //handle state change burger menu
+  const handleStateChange = (state) => {
+    setOpen(state.isOpen);
+  };
+
+  // logout button onClick handler
+  const onClickHandler = async (state) => {
+    await logout();
+    setOpen(false);
   };
 
   return (
@@ -26,6 +37,8 @@ const BurgerMenu = () => {
         pageWrapId="page-wrap"
         outerContainerId="outer-container"
         disableAutoFocus
+        isOpen={open}
+        onStateChange={handleStateChange}
       >
         <div style={{ display: "flex", flexDirection: "column" }}>
           {links.map((link) => {
@@ -33,6 +46,9 @@ const BurgerMenu = () => {
           })}
           {isMobile()
             ? mobileOnlyLinks.map((link) => {
+                if (isUserSignedIn() && link.hideIfUser) {
+                  return null;
+                }
                 return <LinkCard link={link} key={uuid()} />;
               })
             : null}

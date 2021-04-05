@@ -21,5 +21,6 @@ export const mobileOnlyLinks = [
     name: "Login",
     path: "/login",
     icon: <LogIn size={iconSize} />,
-   },
+    hideIfUser: true,
+  },
 ];
