@@ -3,5 +3,5 @@ export const Colors = {
   borderLight: "#CBCBCB",
   outlineBlue: "#4CABFF",
   bgGreen: "#5AAC44",
-  darkBg: "#252525",
+  darkBg: "#1E1E1E",
 };
