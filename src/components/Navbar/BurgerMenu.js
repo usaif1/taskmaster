@@ -5,18 +5,20 @@ import { v4 as uuid } from "uuid";
 
 //actions
 import { isMobile } from "../../actions/general";
+import { isUserSignedIn } from "../../actions/authActions";
 
 //imports
 import { links, mobileOnlyLinks } from "./NavbarLinks";
 import LinkCard from "./LinkCard";
 import { Colors } from "../../utils/Colors";
+import SolidButton from "../common/SolidButton/SolidButton";
 
 const BurgerMenu = () => {
   return (
     <>
       <Menu
         styles={styles}
-        width={isMobile() ? 200 : 400}
+        width={isMobile() ? 210 : 400}
         pageWrapId="page-wrap"
         outerContainerId="outer-container"
         disableAutoFocus
@@ -30,6 +32,17 @@ const BurgerMenu = () => {
                 return <LinkCard link={link} key={uuid()} />;
               })
             : null}
+          {isMobile() && isUserSignedIn() ? (
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <SolidButton
+                styles={{
+                  bgColor: Colors.bgRed,
+                }}
+              >
+                Logout
+              </SolidButton>
+            </div>
+          ) : null}
         </div>
       </Menu>
     </>
