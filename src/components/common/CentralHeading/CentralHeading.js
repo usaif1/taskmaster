@@ -11,7 +11,7 @@ const CentralHeading = ({ title, size = `3rem`, color = "#000000" }) => {
   };
   const classes = useStyles(styles);
   return (
-    <div style={{ width: "100vw" }}>
+    <div>
       <h1 className={classes.heading}>{title}</h1>
     </div>
   );

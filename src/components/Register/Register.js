@@ -65,7 +65,7 @@ const Register = () => {
 
   return (
     <>
-      <CentralHeading title={`TaskMaster`} size={`5rem`} />
+      <CentralHeading title={`Sign Up /Login to TaskMaster`} size={`4rem`} />
       <div className={classes.formContainer}>
         <CentralSubheading
           title={`${capitalize(subheading[0])}`}

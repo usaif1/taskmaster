@@ -1,12 +1,12 @@
 //imports
-import Homepage from "./pages/Homepage";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 const routes = [
   {
     path: "/",
-    component: <Homepage />,
+    component: <Home />,
     navbar: true,
   },
   {
