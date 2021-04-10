@@ -1,5 +1,5 @@
 //imports
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { v4 as uuid } from "uuid";
 
@@ -16,16 +16,14 @@ import SolidButton from "../common/SolidButton/SolidButton";
 const BurgerMenu = () => {
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {}, [open]);
-
   //handle state change burger menu
   const handleStateChange = (state) => {
     setOpen(state.isOpen);
   };
 
   // logout button onClick handler
-  const onClickHandler = async (state) => {
-    await logout();
+  const onClickHandler = () => {
+    logout();
     setOpen(false);
   };
 
