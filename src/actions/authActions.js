@@ -95,6 +95,7 @@ export const logout = () => {
     .then(() => {
       alert("signed out");
       localStorage.removeItem("user");
+      window.location.reload();
     })
     .catch((err) => {
       alert("not signed out.. some err");

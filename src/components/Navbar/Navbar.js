@@ -22,7 +22,6 @@ const Navbar = () => {
   const onClickHandler = () => {
     if (isUserSignedIn()) {
       logout();
-      window.location.reload();
     } else {
       return location.pathname === "/login" ? null : history.push("/login");
     }

@@ -1,9 +1,8 @@
 //dependencies
-import React, { useEffect } from "react";
+import React from "react";
 import { ArrowRight } from "react-feather";
 
 //actions
-import { getCurrentUser } from "../../actions/authActions";
 
 //imports
 import Container from "../common/Container/Container";
@@ -16,13 +15,13 @@ import NewProjectCard from "./NewProjectCard";
 const Home = () => {
   const classes = useStyles();
 
-  useEffect(() => {
-    getCurrentUser();
-  }, []);
-
   return (
     <Container>
-      <CentralHeading title={`Welcome User(user's name will go here)`} />
+      <CentralHeading
+        title={`Welcome  ${
+          JSON.parse(localStorage.getItem("user")).displayName
+        }`}
+      />
       <div className={classes.titleContainer}>
         <p className={classes.title}>Your Projects</p>
         <ArrowRight className={classes.icon} size={30} />
