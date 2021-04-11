@@ -1,9 +1,9 @@
 //dependencies
-import React from "react";
+import React, { useEffect } from "react";
 import { ArrowRight } from "react-feather";
 
 //actions
-// import { isUserSignedIn } from "../../actions/authActions";
+import { getCurrentUser } from "../../actions/authActions";
 
 //imports
 import Container from "../common/Container/Container";
@@ -15,6 +15,10 @@ import NewProjectCard from "./NewProjectCard";
 
 const Home = () => {
   const classes = useStyles();
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
   return (
     <Container>

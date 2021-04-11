@@ -27,3 +27,8 @@ export const isMobile = () => {
     return false;
   }
 };
+
+//get name from email
+export const getNameFromEmail = (emailAddress) => {
+  return emailAddress.substring(0, emailAddress.indexOf("@"));
+};

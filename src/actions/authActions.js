@@ -5,8 +5,11 @@ import "firebase/auth";
 //imports
 import { googleProvider } from "../configs/firebase";
 
+//actions
+import { getNameFromEmail } from "./general";
+
 //user signup - email & password
-export const signup = async (email, password, history, setLoading) => {
+export const signup = (email, password, history, setLoading) => {
   firebase
     .auth()
     .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -15,9 +18,23 @@ export const signup = async (email, password, history, setLoading) => {
         const newUser = await firebase
           .auth()
           .createUserWithEmailAndPassword(email, password);
+
+        //update displayName as soon as user signs in
+        await newUser.user.updateProfile({
+          displayName: getNameFromEmail(email),
+        });
+
+        const user = {
+          uid: newUser.user.uid,
+          displayName: newUser.user.displayName,
+        };
+
+        localStorage.setItem("user", JSON.stringify(user));
+
         history.push("/");
-        localStorage.setItem("userId", newUser.user.uid);
       } catch (err) {
+        debugger;
+        console.log("err --> ", err);
         alert("Something went wrong!");
         setLoading(false);
         return;
@@ -26,20 +43,20 @@ export const signup = async (email, password, history, setLoading) => {
 };
 
 //get current user
-export const getCurrentUser = (setLoading) => {
+export const getCurrentUser = async () => {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      setLoading(true);
+      console.log(user);
     } else {
       // No user is signed in.
-      setLoading(false);
+      return null;
     }
   });
 };
 
 //check if user is signed in
 export const isUserSignedIn = () => {
-  const user = localStorage.getItem("userId");
+  const user = localStorage.getItem("user");
   if (!user) {
     return false;
   }
@@ -53,7 +70,13 @@ export const googleLogin = (history, setLoading2) => {
     .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(async () => {
       const user = await firebase.auth().signInWithPopup(googleProvider);
-      localStorage.setItem("userId", user.user.uid);
+
+      const userDetails = {
+        uid: user.user.uid,
+        displayName: user.user.displayName,
+      };
+
+      localStorage.setItem("user", JSON.stringify(userDetails));
       history.push("/");
     })
     .catch((err) => {
@@ -71,7 +94,7 @@ export const logout = () => {
     .signOut()
     .then(() => {
       alert("signed out");
-      localStorage.removeItem("userId");
+      localStorage.removeItem("user");
     })
     .catch((err) => {
       alert("not signed out.. some err");
