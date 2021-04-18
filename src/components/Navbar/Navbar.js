@@ -57,7 +57,7 @@ const Navbar = () => {
                   style={{ color: "inherit" }}
                   to="/login"
                 >
-                  Sign Up/ Login
+                  Sign In
                 </Link>
               )}
             </OutlinedButton>

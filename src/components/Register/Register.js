@@ -12,6 +12,7 @@ import CentralHeading from "../common/CentralHeading/CentralHeading";
 import CentralSubheading from "../common/CentralSubheading/CentralSubheading";
 import FormButton from "../common/FormButton/FormButton";
 import SocialCard from "./SocialCard";
+import Redirect from "./Redirect";
 import SocialProviders from "./SocialProviders.json";
 import { useStyles } from "./styles";
 
@@ -114,6 +115,7 @@ const Register = ({ action }) => {
             })}
           </div>
         </form>
+        <Redirect />
       </div>
     </>
   );

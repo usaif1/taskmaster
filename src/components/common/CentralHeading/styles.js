@@ -9,7 +9,8 @@ export const useStyles = createUseStyles({
 
   "@media only screen and (max-width: 600px)": {
     heading: {
-      fontSize: "3rem !important",
+      fontSize: "2.8rem !important",
+      marginTop: "6rem",
     },
   },
 });
