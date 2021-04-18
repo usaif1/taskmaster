@@ -12,6 +12,7 @@ import { links, mobileOnlyLinks } from "./NavbarLinks";
 import LinkCard from "./LinkCard";
 import { Colors } from "../../utils/Colors";
 import SolidButton from "../common/SolidButton/SolidButton";
+import "./bmStyles.modules.css";
 
 const BurgerMenu = () => {
   const [open, setOpen] = useState(false);
@@ -28,7 +29,7 @@ const BurgerMenu = () => {
   };
 
   return (
-    <>
+    <div style={{ position: "fixed", top: "0" }}>
       <Menu
         styles={styles}
         width={isMobile() ? 210 : 400}
@@ -64,7 +65,7 @@ const BurgerMenu = () => {
           ) : null}
         </div>
       </Menu>
-    </>
+    </div>
   );
 };
 

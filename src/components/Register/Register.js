@@ -4,7 +4,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
 //actions
-import { signup, isUserSignedIn, googleLogin } from "../../actions/authActions";
+import { isUserSignedIn, googleLogin } from "../../actions/authActions";
 import { capitalize, validEmail } from "../../actions/general";
 
 //imports
@@ -15,7 +15,7 @@ import SocialCard from "./SocialCard";
 import SocialProviders from "./SocialProviders.json";
 import { useStyles } from "./styles";
 
-const Register = () => {
+const Register = ({ action }) => {
   const classes = useStyles();
   const location = useLocation();
   const history = useHistory();
@@ -50,7 +50,8 @@ const Register = () => {
     }
     if (validEmail(email)) {
       setLoading(true);
-      signup(email, password, history, setLoading);
+      action(email, password, history, setLoading);
+      // signIn(email, password, history, setLoading);
     } else {
       return null;
     }

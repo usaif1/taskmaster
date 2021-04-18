@@ -10,6 +10,10 @@ export const useStyles = createUseStyles({
     color: "white",
   },
   navContainer: {
+    background: `${Colors.darkBg}`,
+    position: "fixed",
+    width: "100%",
+    top: "0",
     display: "flex",
     justifyContent: "center",
   },

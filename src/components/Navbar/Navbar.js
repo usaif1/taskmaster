@@ -29,16 +29,16 @@ const Navbar = () => {
 
   return (
     <div className={classes.container}>
-      <BurgerMenu />
       <div className={classes.navContainer}>
         <nav className={classes.nav}>
+          <BurgerMenu />
           <Link to="/" className={classes.link}>
             <CentralSubheading title="TaskMaster" size="2.5rem" color="white" />
           </Link>
           {isMobile() ? null : (
             <OutlinedButton
               style={{
-                position: "fixed",
+                position: "absolute",
                 right: "10rem",
                 borderColor: "white",
                 fontSize: "1.6rem",

@@ -39,6 +39,40 @@ export const signup = (email, password, history, setLoading) => {
         setLoading(false);
         return;
       }
+    })
+    .catch((err) => {
+      return alert("Internal Server Error!");
+    });
+};
+
+//user sign in - email & password
+export const signIn = (email, password, history, setLoading) => {
+  firebase
+    .auth()
+    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    .then(() => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = {
+            uid: userCredential.user.uid,
+            displayName: userCredential.user.displayName,
+          };
+
+          localStorage.setItem("user", JSON.stringify(user));
+
+          history.push("/");
+        })
+        .catch((err) => {
+          console.log("err --> ", err.message);
+          alert("Invalid Credentials!");
+          setLoading(false);
+        });
+    })
+    .catch((err) => {
+      return alert("Internal Server Error!");
     });
 };
 
