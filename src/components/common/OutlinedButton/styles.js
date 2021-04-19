@@ -14,6 +14,7 @@ export const useStyles = createUseStyles({
     fontWeight: "600",
     outline: "none",
     cursor: "pointer",
+    transition: "background 0.6s",
     fontSize: (styles) => styles.fontSize,
     position: (styles) => styles.position,
     right: (styles) => styles.right,
