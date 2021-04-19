@@ -17,7 +17,6 @@ const NewProjectCard = () => {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            height: "120%",
           }}
         >
           <Plus style={{ position: "relative" }} />

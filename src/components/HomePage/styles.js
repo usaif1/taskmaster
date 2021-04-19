@@ -45,11 +45,10 @@ export const useStyles = createUseStyles({
     fontSize: "1.4rem",
   },
   addNew: {
-    height: window.innerHeight / 7.7,
-    border: `2px dashed ${Colors.borderLight}`,
-    borderRadius: "2rem",
-    margin: "1.5rem",
-    padding: "2rem",
+    border: `2px dashed ${Colors.dashedBorder}`,
+    borderRadius: "inherit",
+    margin: "1rem",
+    padding: "5rem 0",
   },
 
   /*Media Queries*/
@@ -75,13 +74,10 @@ export const useStyles = createUseStyles({
       marginRight: "unset",
     },
     projectTitle: {
-      fontSize: "1.4rem",
+      fontSize: "1.5rem",
     },
     projectDescription: {
-      fontSize: "1rem",
-    },
-    addNew: {
-      height: window.innerHeight / 6.85,
+      fontSize: "1.3rem",
     },
   },
 });
