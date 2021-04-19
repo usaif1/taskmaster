@@ -79,5 +79,8 @@ export const useStyles = createUseStyles({
     projectDescription: {
       fontSize: "1.3rem",
     },
+    addNew: {
+      margin: "0.4rem",
+    },
   },
 });
