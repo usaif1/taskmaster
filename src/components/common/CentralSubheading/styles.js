@@ -1,17 +1,15 @@
 import { createUseStyles } from "react-jss";
 
 export const useStyles = createUseStyles({
-  heading: {
+  subheading: {
     fontSize: (styles) => styles.size,
     textAlign: "center",
     color: (styles) => styles.color,
-    marginTop: "10rem",
   },
 
   "@media only screen and (max-width: 600px)": {
-    heading: {
-      fontSize: "2.8rem !important",
-      marginTop: "6rem",
+    subheading: {
+      fontSize: "1.5rem !important",
     },
   },
 });
