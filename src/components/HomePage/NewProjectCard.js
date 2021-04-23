@@ -24,7 +24,7 @@ const NewProjectCard = () => {
             justifyContent: "center",
           }}
         >
-          <Plus style={{ position: "relative" }} />
+          <Plus />
           <p className={classes.projectDescription}>Add New Project</p>
         </div>
       </div>

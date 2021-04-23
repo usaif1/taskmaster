@@ -2,6 +2,9 @@
 import React, { useContext } from "react";
 import ReactModal from "react-modal";
 
+//actions
+import { isMobile } from "../../../actions/general";
+
 //context
 import AppContext from "../../../context/AppContext";
 
@@ -14,6 +17,7 @@ const Modal = (props) => {
       ariaHideApp={false}
       shouldCloseOnOverlayClick={true}
       onRequestClose={closeModal}
+      style={styles}
     >
       {props.children}
     </ReactModal>
@@ -21,3 +25,11 @@ const Modal = (props) => {
 };
 
 export default Modal;
+
+//custom styles for the modal
+
+const styles = {
+  content: {
+    inset: isMobile() ? "100px  20px" : "170px",
+  },
+};

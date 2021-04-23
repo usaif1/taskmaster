@@ -14,6 +14,7 @@ import projects from "./dummyProjects";
 import ProjectCard from "./ProjectCard";
 import NewProjectCard from "./NewProjectCard";
 import Modal from "../common/Modal/Modal";
+import AddNewProject from "../ModalViews/AddNewProject";
 import { useStyles } from "./styles";
 
 const Home = () => {
@@ -36,7 +37,9 @@ const Home = () => {
           return <ProjectCard project={project} key={project.id} />;
         })}
       </div>
-      <Modal>Hello World</Modal>
+      <Modal>
+        <AddNewProject />
+      </Modal>
     </Container>
   );
 };

@@ -16,6 +16,7 @@ const AppProvider = ({ children }) => {
       type: OPEN_MODAL,
       payload: true,
     });
+    document.body.style.overflow = "hidden";
   };
 
   //close modal
@@ -24,6 +25,7 @@ const AppProvider = ({ children }) => {
       type: CLOSE_MODAL,
       payload: false,
     });
+    document.body.style.overflow = "unset";
   };
 
   return (
