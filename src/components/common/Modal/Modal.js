@@ -30,6 +30,9 @@ export default Modal;
 
 const styles = {
   content: {
-    inset: isMobile() ? "100px  20px" : "170px",
+    inset: isMobile() ? "100px  20px" : "165px 250px",
+  },
+  overlay: {
+    background: `rgba(0, 0, 0, 0.65)`,
   },
 };

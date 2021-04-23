@@ -1,7 +1,9 @@
 //dependencies
 import React from "react";
+import { Colors } from "../../utils/Colors";
 
 //imports
+import OutlinedButton from "../common/OutlinedButton/OutlinedButton";
 import { useStyles } from "./styles";
 
 const AddNewProject = () => {
@@ -23,9 +25,45 @@ const AddNewProject = () => {
           id=""
           rows="10"
         />
+        <div className={classes.btnContainer}>
+          <OutlinedButton style={{ ...styles.common, ...styles.cancel }}>
+            Cancel
+          </OutlinedButton>
+          <div style={{ marginLeft: "1rem" }}>
+            <OutlinedButton style={{ ...styles.common, ...styles.add }}>
+              Add Project
+            </OutlinedButton>
+          </div>
+        </div>
       </form>
     </div>
   );
 };
 
 export default AddNewProject;
+
+//outlined button styles
+const styles = {
+  common: {
+    position: "unset",
+    fontSize: "1.6rem",
+  },
+
+  add: {
+    color: `#51B800`,
+    borderColor: `#51B800`,
+    hover: {
+      color: "white",
+      background: `${Colors.bgGreen}`,
+    },
+  },
+
+  cancel: {
+    color: "#FF6666",
+    borderColor: `#FF6666`,
+    hover: {
+      color: "white",
+      background: `${Colors.bgRed}`,
+    },
+  },
+};

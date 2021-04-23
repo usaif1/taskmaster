@@ -21,6 +21,11 @@ export const useStyles = createUseStyles({
     },
   },
 
+  btnContainer: {
+    display: "flex",
+    marginTop: "1rem",
+  },
+
   /*Media Queries*/
 
   "@media only screen and (max-width: 600px)": {
@@ -29,6 +34,9 @@ export const useStyles = createUseStyles({
     },
     linkDetails: {
       fontSize: "1.3rem",
+    },
+    btnContainer: {
+      justifyContent: "center",
     },
   },
 });
