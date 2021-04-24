@@ -7,10 +7,9 @@ import { v4 as uuid } from "uuid";
 //actions
 import { capitalize } from "./general";
 
-const token = JSON.parse(localStorage.getItem("user"));
-
 //add new project
 export const addNewProject = async (title, description) => {
+  const token = JSON.parse(localStorage.getItem("user"));
   const db = firebase.firestore();
   try {
     await db
@@ -35,7 +34,7 @@ export const getMyProjects = async () => {
   let projects = [];
   try {
     const doc = await docRef
-      .where("owner", "==", token.uid)
+      .where("owner", "==", JSON.parse(localStorage.getItem("user")).uid)
       .orderBy("createdAt", "desc")
       .get();
     if (doc.empty) {
@@ -45,5 +44,6 @@ export const getMyProjects = async () => {
     return projects;
   } catch (err) {
     alert("Error fetching projects");
+    console.log("err fetching projects --> ", err);
   }
 };

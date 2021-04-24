@@ -28,13 +28,11 @@ export const signup = (email, password, history, setLoading) => {
           uid: newUser.user.uid,
           displayName: newUser.user.displayName,
         };
-
         localStorage.setItem("user", JSON.stringify(user));
 
         history.push("/");
       } catch (err) {
         debugger;
-        console.log("err --> ", err);
         alert("Something went wrong!");
         setLoading(false);
         return;
@@ -60,13 +58,11 @@ export const signIn = (email, password, history, setLoading) => {
             uid: userCredential.user.uid,
             displayName: userCredential.user.displayName,
           };
-
           localStorage.setItem("user", JSON.stringify(user));
 
           history.push("/");
         })
         .catch((err) => {
-          console.log("err --> ", err.message);
           alert("Invalid Credentials!");
           setLoading(false);
         });
@@ -114,8 +110,6 @@ export const googleLogin = (history, setLoading2) => {
       history.push("/");
     })
     .catch((err) => {
-      console.log("i'm the alert being triggered");
-      console.log("err --> ", err.message);
       setLoading2(false);
       alert("Something Went Wrong");
     });

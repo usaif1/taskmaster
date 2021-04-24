@@ -3,7 +3,7 @@ import React, { useEffect, useContext } from "react";
 import { ArrowRight } from "react-feather";
 
 //actions
-// import { getMyProjects } from "../../actions/dbActions";
+// import { isUserSignedIn } from "../../actions/authActions";
 
 //context
 import ProjectContext from "../../context/ProjectContext/ProjectContext";
@@ -27,6 +27,7 @@ const Home = () => {
 
   useEffect(() => {
     getUserProjects();
+
     //eslint-disable-next-line
   }, [refresh]);
 
