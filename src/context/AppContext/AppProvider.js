@@ -5,7 +5,7 @@ import { useReducer } from "react";
 import initialState from "./state";
 import AppContext from "./AppContext";
 import AppReducer from "./AppReducer";
-import { OPEN_MODAL, CLOSE_MODAL } from "../../actions/types";
+import { OPEN_MODAL, CLOSE_MODAL, REFRESH_PAGE } from "../../actions/types";
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -28,8 +28,17 @@ const AppProvider = ({ children }) => {
     document.body.style.overflow = "unset";
   };
 
+  //refresh page
+  const refreshPage = () => {
+    dispatch({
+      type: REFRESH_PAGE,
+    });
+  };
+
   return (
-    <AppContext.Provider value={{ ...state, openModal, closeModal }}>
+    <AppContext.Provider
+      value={{ ...state, openModal, closeModal, refreshPage }}
+    >
       {children}
     </AppContext.Provider>
   );

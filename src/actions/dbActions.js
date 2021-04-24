@@ -13,19 +13,18 @@ const token = JSON.parse(localStorage.getItem("user"));
 export const addNewProject = async (title, description) => {
   const db = firebase.firestore();
   try {
-    const doc = await db
+    await db
       .collection("projects")
       .doc(`p${uuid()}`)
       .set({
+        id: `pid${uuid()}`,
         title: capitalize(title),
         description: description,
         createdAt: moment().toISOString(),
         owner: token && token.uid,
       });
-    console.log("doc --> ", doc);
   } catch (err) {
     alert("Something went wrong!");
-    console.log("error --> ", err);
   }
 };
 
@@ -33,19 +32,18 @@ export const addNewProject = async (title, description) => {
 export const getMyProjects = async () => {
   const db = firebase.firestore();
   const docRef = db.collection("projects");
-  console.log("token --> ", token.uid);
+  let projects = [];
   try {
-    const doc = await docRef.where("owner", "==", token.uid).get();
-
-    doc.forEach((doc) => console.log(doc.data()));
-
-    if (doc.exists) {
-      console.log("doc exists --> ", doc);
-    } else {
-      console.log("no such data");
+    const doc = await docRef
+      .where("owner", "==", token.uid)
+      .orderBy("createdAt", "desc")
+      .get();
+    if (doc.empty) {
+      return [];
     }
+    doc.forEach((doc) => projects.push(doc.data()));
+    return projects;
   } catch (err) {
-    console.log("err fetching data --> ", err);
     alert("Error fetching projects");
   }
 };

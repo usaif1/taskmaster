@@ -1,5 +1,5 @@
 //imports
-import { OPEN_MODAL, CLOSE_MODAL } from "../../actions/types";
+import { OPEN_MODAL, CLOSE_MODAL, REFRESH_PAGE } from "../../actions/types";
 
 const AppReducer = (state, action) => {
   switch (action.type) {
@@ -13,6 +13,12 @@ const AppReducer = (state, action) => {
       return {
         ...state,
         open: false,
+      };
+
+    case REFRESH_PAGE:
+      return {
+        ...state,
+        refresh: !state.refresh,
       };
 
     default:

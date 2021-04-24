@@ -9,7 +9,7 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div className={classes.cardContainer}>
-      <h2 className={classes.projectTitle}>{project.name}</h2>
+      <h2 className={classes.projectTitle}>{project.title}</h2>
       <p className={classes.projectDescription}>{project.description}</p>
     </div>
   );

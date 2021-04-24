@@ -18,7 +18,7 @@ const AddNewProject = () => {
     description: "",
   });
 
-  const { closeModal } = useContext(AppContext);
+  const { closeModal, refreshPage } = useContext(AppContext);
 
   //onchange handler
   const onChangeHandler = (e) => {
@@ -30,6 +30,7 @@ const AddNewProject = () => {
     e.preventDefault();
     addNewProject(formData.title, formData.description);
     closeModal();
+    refreshPage();
   };
 
   //on cancel
