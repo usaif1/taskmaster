@@ -5,7 +5,7 @@ import { useReducer } from "react";
 import initialState from "./state";
 import AppContext from "./AppContext";
 import AppReducer from "./AppReducer";
-import { OPEN_MODAL, CLOSE_MODAL } from "../actions/types";
+import { OPEN_MODAL, CLOSE_MODAL } from "../../actions/types";
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);

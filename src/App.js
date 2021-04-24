@@ -1,6 +1,6 @@
 //imports
 import Routes from "./Routes";
-import AppProvider from "./context/AppProvider";
+import AppProvider from "./context/AppContext/AppProvider";
 
 function App() {
   return (

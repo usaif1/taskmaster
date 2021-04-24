@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { Plus } from "react-feather";
 
 //context
-import AppContext from "../../context/AppContext";
+import AppContext from "../../context/AppContext/AppContext";
 
 //imports
 import { useStyles } from "./styles";

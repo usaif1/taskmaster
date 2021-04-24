@@ -53,6 +53,12 @@ export const useStyles = createUseStyles({
 
   /*Media Queries*/
 
+  "@media only screen and (max-width: 1500px)": {
+    cardContainer: {
+      width: window.innerWidth / 6,
+    },
+  },
+
   "@media only screen and (max-width: 600px)": {
     titleContainer: {
       marginTop: "unset",

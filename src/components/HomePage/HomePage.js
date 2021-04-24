@@ -1,8 +1,9 @@
 //dependencies
-import React from "react";
+import React, { useEffect } from "react";
 import { ArrowRight } from "react-feather";
 
 //actions
+import { getMyProjects } from "../../actions/dbActions";
 
 //context
 // import AppContext from "../../context/AppContext";
@@ -19,6 +20,15 @@ import { useStyles } from "./styles";
 
 const Home = () => {
   const classes = useStyles();
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  //fetch my projects
+  const fetchProjects = async () => {
+    getMyProjects();
+  };
 
   return (
     <Container>

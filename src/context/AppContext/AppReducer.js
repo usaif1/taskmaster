@@ -1,5 +1,5 @@
 //imports
-import { OPEN_MODAL, CLOSE_MODAL } from "../actions/types";
+import { OPEN_MODAL, CLOSE_MODAL } from "../../actions/types";
 
 const AppReducer = (state, action) => {
   switch (action.type) {

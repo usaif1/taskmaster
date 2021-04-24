@@ -1,6 +1,10 @@
 //dependencies
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Colors } from "../../utils/Colors";
+
+//actions
+import { addNewProject } from "../../actions/dbActions";
+import AppContext from "../../context/AppContext/AppContext";
 
 //imports
 import OutlinedButton from "../common/OutlinedButton/OutlinedButton";
@@ -9,28 +13,66 @@ import { useStyles } from "./styles";
 const AddNewProject = () => {
   const classes = useStyles();
 
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+  });
+
+  const { closeModal } = useContext(AppContext);
+
+  //onchange handler
+  const onChangeHandler = (e) => {
+    setFormData({ ...formData, [`${e.target.name}`]: e.target.value });
+  };
+
+  //on add
+  const addProjectHandler = (e) => {
+    e.preventDefault();
+    addNewProject(formData.title, formData.description);
+    closeModal();
+  };
+
+  //on cancel
+  const cancelHandler = (e) => {
+    e.preventDefault();
+    closeModal();
+  };
+
   return (
     <div>
       <form style={{ display: "flex", flexDirection: "column" }}>
-        <label htmlFor="projectTitle" className={classes.label}>
+        <label htmlFor="title" className={classes.label}>
           Project Title
         </label>
-        <input className={classes.input} type="text" name="projectTitle" />
-        <label htmlFor="projectDescription" className={classes.label}>
+        <input
+          className={classes.input}
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={onChangeHandler}
+        />
+        <label htmlFor="description" className={classes.label}>
           Project Description
         </label>
         <textarea
           className={classes.input}
-          name="projectDescription"
+          name="description"
           id=""
           rows="10"
+          onChange={onChangeHandler}
         />
         <div className={classes.btnContainer}>
-          <OutlinedButton style={{ ...styles.common, ...styles.cancel }}>
+          <OutlinedButton
+            style={{ ...styles.common, ...styles.cancel }}
+            onClickHandler={cancelHandler}
+          >
             Cancel
           </OutlinedButton>
           <div style={{ marginLeft: "1rem" }}>
-            <OutlinedButton style={{ ...styles.common, ...styles.add }}>
+            <OutlinedButton
+              style={{ ...styles.common, ...styles.add }}
+              onClickHandler={addProjectHandler}
+            >
               Add Project
             </OutlinedButton>
           </div>
