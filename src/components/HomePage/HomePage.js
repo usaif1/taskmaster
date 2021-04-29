@@ -1,16 +1,16 @@
 //dependencies
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { ArrowRight } from "react-feather";
-
-//actions
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 //context
-// import AppContext from "../../context/AppContext";
+import ProjectContext from "../../context/ProjectContext/ProjectContext";
+import AppContext from "../../context/AppContext/AppContext";
 
 //imports
 import Container from "../common/Container/Container";
 import CentralHeading from "../common/CentralHeading/CentralHeading";
-import projects from "./dummyProjects";
+// import projects from "./dummyProjects";
 import ProjectCard from "./ProjectCard";
 import NewProjectCard from "./NewProjectCard";
 import Modal from "../common/Modal/Modal";
@@ -19,6 +19,17 @@ import { useStyles } from "./styles";
 
 const Home = () => {
   const classes = useStyles();
+
+  const { projects, getUserProjects, projectsLoading } = useContext(
+    ProjectContext
+  );
+  const { refresh } = useContext(AppContext);
+
+  useEffect(() => {
+    getUserProjects();
+
+    //eslint-disable-next-line
+  }, [refresh]);
 
   return (
     <Container>
@@ -33,10 +44,19 @@ const Home = () => {
       </div>
       <div className={classes.listContainer}>
         <NewProjectCard />
-        {projects.map((project) => {
-          return <ProjectCard project={project} key={project.id} />;
-        })}
+        {!projectsLoading ? (
+          projects.map((project) => {
+            return <ProjectCard project={project} key={project.id} />;
+          })
+        ) : (
+          <div className={classes.scaleLoaderContainer}>
+            <ScaleLoader color="#000000" height={20} />
+          </div>
+        )}
       </div>
+      {projects.length < 1 && !projectsLoading && (
+        <p>No projects found. Try adding one</p>
+      )}
       <Modal>
         <AddNewProject />
       </Modal>

@@ -8,7 +8,7 @@ export const useStyles = createUseStyles({
   btn: {
     background: "transparent",
     border: (styles) => `1.8px solid ${styles.borderColor}`,
-    color: "white",
+    color: (styles) => styles.color,
     padding: "1rem",
     borderRadius: "0.8rem",
     fontWeight: "600",
@@ -17,7 +17,7 @@ export const useStyles = createUseStyles({
     transition: "background 0.6s",
     fontSize: (styles) => styles.fontSize,
     position: (styles) => styles.position,
-    right: (styles) => styles.right,
+    right: (styles) => (styles.right ? styles.right : "unset"),
     "&:hover": {
       color: (styles) => styles.hover.color,
       background: (styles) => styles.hover.background,

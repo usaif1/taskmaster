@@ -20,11 +20,16 @@ export const useStyles = createUseStyles({
     marginLeft: "1rem",
   },
 
+  scaleLoaderContainer: {
+    marginLeft: "5rem",
+  },
+
   /* Project Card Styles*/
   listContainer: {
     display: "flex",
     flexWrap: "wrap",
     marginBottom: "2rem",
+    alignItems: "center",
   },
   cardContainer: {
     boxShadow: `1px 1px 8px ${Colors.boxShadow}`,
@@ -53,6 +58,12 @@ export const useStyles = createUseStyles({
 
   /*Media Queries*/
 
+  "@media only screen and (max-width: 1500px)": {
+    cardContainer: {
+      width: window.innerWidth / 6,
+    },
+  },
+
   "@media only screen and (max-width: 600px)": {
     titleContainer: {
       marginTop: "unset",
@@ -64,6 +75,12 @@ export const useStyles = createUseStyles({
     icon: {
       marginLeft: "0.5rem",
     },
+
+    scaleLoaderContainer: {
+      marginLeft: "unset",
+      marginTop: "5rem",
+    },
+
     listContainer: {
       flexDirection: "column",
       alignItems: "center",

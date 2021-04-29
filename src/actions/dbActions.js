@@ -2,41 +2,48 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import moment from "moment";
+import { v4 as uuid } from "uuid";
 
-const token = JSON.parse(localStorage.getItem("user"));
+//actions
+import { capitalize } from "./general";
 
 //add new project
-export const addNewProject = async () => {
+export const addNewProject = async (title, description) => {
+  const token = JSON.parse(localStorage.getItem("user"));
   const db = firebase.firestore();
   try {
-    const doc = await db
+    await db
       .collection("projects")
-      .doc("second")
+      .doc(`p${uuid()}`)
       .set({
-        title: "second project",
+        id: `pid${uuid()}`,
+        title: capitalize(title),
+        description: description,
         createdAt: moment().toISOString(),
         owner: token && token.uid,
       });
-    console.log("doc --> ", doc);
   } catch (err) {
     alert("Something went wrong!");
-    console.log("error --> ", err);
   }
 };
 
 //get projects
 export const getMyProjects = async () => {
   const db = firebase.firestore();
-  const docRef = db.collection("projects").doc("first");
+  const docRef = db.collection("projects");
+  let projects = [];
   try {
-    const doc = await docRef.get();
-    if (doc.exists) {
-      console.log("doc exists --> ", doc.data());
-    } else {
-      console.log("no such data");
+    const doc = await docRef
+      .where("owner", "==", JSON.parse(localStorage.getItem("user")).uid)
+      .orderBy("createdAt", "desc")
+      .get();
+    if (doc.empty) {
+      return [];
     }
+    doc.forEach((doc) => projects.push(doc.data()));
+    return projects;
   } catch (err) {
-    console.log("err fetching data --> ", err);
     alert("Error fetching projects");
+    console.log("err fetching projects --> ", err);
   }
 };

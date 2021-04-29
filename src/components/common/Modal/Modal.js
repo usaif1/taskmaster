@@ -6,7 +6,7 @@ import ReactModal from "react-modal";
 import { isMobile } from "../../../actions/general";
 
 //context
-import AppContext from "../../../context/AppContext";
+import AppContext from "../../../context/AppContext/AppContext";
 
 const Modal = (props) => {
   const { open, closeModal } = useContext(AppContext);
@@ -30,6 +30,15 @@ export default Modal;
 
 const styles = {
   content: {
-    inset: isMobile() ? "100px  20px" : "170px",
+    inset: isMobile() ? `10rem  2rem` : "165px 200px",
+    // inset: "unset",
+    // height: isMobile() ? "40rem" :
+    // margin: "auto",
+    // width: "33rem",
+    // position: "relative",
+    // top: "20rem",
+  },
+  overlay: {
+    background: `rgba(0, 0, 0, 0.65)`,
   },
 };

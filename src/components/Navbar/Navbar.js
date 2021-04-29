@@ -39,6 +39,7 @@ const Navbar = () => {
             <OutlinedButton
               style={{
                 position: "absolute",
+                color: "white",
                 right: "10rem",
                 borderColor: "white",
                 fontSize: "1.6rem",

@@ -1,6 +1,7 @@
 //initial state
 const initialState = {
-  open: false,
+  projects: [],
+  projectsLoading: true,
 };
 
 export default initialState;
