@@ -52,7 +52,6 @@ const Register = ({ action }) => {
     if (validEmail(email)) {
       setLoading(true);
       action(email, password, history, setLoading);
-      // signIn(email, password, history, setLoading);
     } else {
       return null;
     }

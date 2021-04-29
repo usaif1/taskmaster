@@ -1,9 +1,7 @@
 //dependencies
 import React, { useEffect, useContext } from "react";
 import { ArrowRight } from "react-feather";
-
-//actions
-// import { isUserSignedIn } from "../../actions/authActions";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 //context
 import ProjectContext from "../../context/ProjectContext/ProjectContext";
@@ -22,7 +20,9 @@ import { useStyles } from "./styles";
 const Home = () => {
   const classes = useStyles();
 
-  const { projects, getUserProjects } = useContext(ProjectContext);
+  const { projects, getUserProjects, projectsLoading } = useContext(
+    ProjectContext
+  );
   const { refresh } = useContext(AppContext);
 
   useEffect(() => {
@@ -44,11 +44,19 @@ const Home = () => {
       </div>
       <div className={classes.listContainer}>
         <NewProjectCard />
-        {projects &&
+        {!projectsLoading ? (
           projects.map((project) => {
             return <ProjectCard project={project} key={project.id} />;
-          })}
+          })
+        ) : (
+          <div className={classes.scaleLoaderContainer}>
+            <ScaleLoader color="#000000" height={20} />
+          </div>
+        )}
       </div>
+      {projects.length < 1 && !projectsLoading && (
+        <p>No projects found. Try adding one</p>
+      )}
       <Modal>
         <AddNewProject />
       </Modal>

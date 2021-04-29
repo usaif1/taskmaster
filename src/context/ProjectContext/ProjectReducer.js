@@ -7,6 +7,7 @@ const ProjectReducer = (state, action) => {
       return {
         ...state,
         projects: action.payload,
+        projectsLoading: false,
       };
 
     default:

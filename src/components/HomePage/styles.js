@@ -20,11 +20,16 @@ export const useStyles = createUseStyles({
     marginLeft: "1rem",
   },
 
+  scaleLoaderContainer: {
+    marginLeft: "5rem",
+  },
+
   /* Project Card Styles*/
   listContainer: {
     display: "flex",
     flexWrap: "wrap",
     marginBottom: "2rem",
+    alignItems: "center",
   },
   cardContainer: {
     boxShadow: `1px 1px 8px ${Colors.boxShadow}`,
@@ -70,6 +75,12 @@ export const useStyles = createUseStyles({
     icon: {
       marginLeft: "0.5rem",
     },
+
+    scaleLoaderContainer: {
+      marginLeft: "unset",
+      marginTop: "5rem",
+    },
+
     listContainer: {
       flexDirection: "column",
       alignItems: "center",
