@@ -30,7 +30,7 @@ export default Modal;
 
 const styles = {
   content: {
-    inset: isMobile() ? `10rem  2rem` : "165px 200px",
+    inset: isMobile() ? `10rem  2rem` : "16.5rem 20rem",
     // inset: "unset",
     // height: isMobile() ? "40rem" :
     // margin: "auto",

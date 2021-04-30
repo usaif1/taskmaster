@@ -14,7 +14,10 @@ const NewProjectCard = () => {
   const { openModal } = useContext(AppContext);
 
   return (
-    <div className={classes.cardContainer} onClick={openModal}>
+    <div
+      className={`${classes.cardContainer} ${classes.noGrabbing}`}
+      onClick={openModal}
+    >
       <div className={classes.addNew}>
         <div
           style={{

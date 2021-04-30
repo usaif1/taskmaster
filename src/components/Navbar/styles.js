@@ -16,6 +16,7 @@ export const useStyles = createUseStyles({
     top: "0",
     display: "flex",
     justifyContent: "center",
+    zIndex: 1,
   },
   nav: {
     display: "flex",

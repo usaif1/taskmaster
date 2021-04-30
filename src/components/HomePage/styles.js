@@ -31,6 +31,7 @@ export const useStyles = createUseStyles({
     marginBottom: "2rem",
     alignItems: "center",
   },
+
   cardContainer: {
     boxShadow: `1px 1px 8px ${Colors.boxShadow}`,
     marginRight: "2rem",
@@ -40,9 +41,24 @@ export const useStyles = createUseStyles({
     width: window.innerWidth / 9,
     height: "20rem",
     wordWrap: "break-word",
-    cursor: "pointer",
+    // cursor: "pointer",
     overflow: "hidden",
+    background: "#ffffff",
+    "&:hover": {
+      cursor: "pointer",
+    },
+    "&:active": {
+      cursor: "grabbing",
+    },
   },
+
+  noGrabbing: {
+    cursor: "pointer",
+    "&:active": {
+      cursor: "pointer !important",
+    },
+  },
+
   projectTitle: {
     fontSize: "1.8rem",
   },
