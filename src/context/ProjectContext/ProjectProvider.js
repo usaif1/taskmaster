@@ -2,7 +2,7 @@
 import { useReducer } from "react";
 
 //actions
-import { getMyProjects } from "../../actions/dbActions";
+import { getMyProjects, deleteProject } from "../../actions/dbActions";
 
 //imports
 import initialState from "./state";
@@ -22,8 +22,17 @@ const AppProvider = ({ children }) => {
     });
   };
 
+  const deleteUserProject = async (docID) => {
+    deleteProject(docID);
+    setTimeout(async () => {
+      getUserProjects();
+    }, 500);
+  };
+
   return (
-    <ProjectContext.Provider value={{ ...state, getUserProjects }}>
+    <ProjectContext.Provider
+      value={{ ...state, getUserProjects, deleteUserProject }}
+    >
       {children}
     </ProjectContext.Provider>
   );

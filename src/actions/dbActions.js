@@ -40,10 +40,30 @@ export const getMyProjects = async () => {
     if (doc.empty) {
       return [];
     }
-    doc.forEach((doc) => projects.push(doc.data()));
+    doc.forEach((doc) => {
+      projects.push({
+        docID: doc.id,
+        ...doc.data(),
+      });
+    });
     return projects;
   } catch (err) {
     alert("Error fetching projects");
     console.log("err fetching projects --> ", err);
   }
+};
+
+// delete a project
+export const deleteProject = (docID) => {
+  const db = firebase.firestore();
+  const docRef = db.collection("projects");
+  docRef
+    .doc(docID)
+    .delete()
+    .then(() => {
+      alert("Project Deleted!");
+    })
+    .catch((err) => {
+      alert("Error Deleting Project");
+    });
 };

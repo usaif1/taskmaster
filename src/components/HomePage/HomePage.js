@@ -27,7 +27,6 @@ const Home = () => {
 
   useEffect(() => {
     getUserProjects();
-
     //eslint-disable-next-line
   }, [refresh]);
 
