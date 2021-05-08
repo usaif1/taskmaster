@@ -1,5 +1,5 @@
 //dependencies
-import React, { useState } from "react";
+import React from "react";
 import Draggable from "react-draggable";
 //context
 // import ProjectContext from "../../context/ProjectContext/ProjectContext";
@@ -19,9 +19,9 @@ const ProjectCard = ({ project }) => {
   //setting bounds for desktop and mobile
 
   //onStartHandler
-  const onStartHandler = (e) => {
-    // console.log(e);
-  };
+  // const onStartHandler = (e) => {
+  //   // console.log(e);
+  // };
 
   //onStopHandler
   const onStophandler = async (e, pos) => {
