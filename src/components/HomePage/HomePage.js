@@ -41,7 +41,7 @@ const Home = () => {
         <p className={classes.title}>Your Projects</p>
         <ArrowRight className={classes.icon} size={30} />
       </div>
-      <div className={classes.listContainer}>
+      <div className={classes.listContainer} style={{ overflow: "visible" }}>
         <NewProjectCard />
         {!projectsLoading ? (
           projects.map((project) => {

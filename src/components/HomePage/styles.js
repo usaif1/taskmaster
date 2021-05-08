@@ -103,8 +103,9 @@ export const useStyles = createUseStyles({
     },
     cardContainer: {
       width: "85%",
-      height: "18rem",
+      height: "12rem",
       marginRight: "unset",
+      marginTop: "5rem",
     },
     projectTitle: {
       fontSize: "1.5rem",
@@ -114,6 +115,7 @@ export const useStyles = createUseStyles({
     },
     addNew: {
       margin: "0.4rem",
+      padding: "2rem 0",
     },
   },
 });
