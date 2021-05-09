@@ -34,6 +34,8 @@ export const useStyles = createUseStyles({
 
   cardContainer: {
     boxShadow: `1px 1px 8px ${Colors.boxShadow}`,
+    display: "flex",
+    flexDirection: "column",
     marginRight: "2rem",
     marginTop: "2rem",
     padding: "1.2rem",
@@ -41,35 +43,37 @@ export const useStyles = createUseStyles({
     width: window.innerWidth / 9,
     height: "20rem",
     wordWrap: "break-word",
-    // cursor: "pointer",
     overflow: "hidden",
     background: "#ffffff",
     "&:hover": {
       cursor: "pointer",
     },
-    "&:active": {
-      cursor: "grabbing",
-    },
   },
 
-  noGrabbing: {
-    cursor: "pointer",
-    "&:active": {
-      cursor: "pointer !important",
-    },
-  },
+  textContainer: {},
 
   projectTitle: {
     fontSize: "1.8rem",
   },
   projectDescription: {
     fontSize: "1.4rem",
+    //multi line ellipse
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    display: "-webkit-box",
+    WebkitLineClamp: "4",
+    WebkitBoxOrient: "vertical",
   },
   addNew: {
     border: `2px dashed ${Colors.dashedBorder}`,
     borderRadius: "inherit",
     margin: "1rem",
     padding: "5rem 0",
+  },
+
+  chevronLeft: {
+    position: "absolute",
+    top: "7rem",
   },
 
   /*Media Queries*/
@@ -103,9 +107,20 @@ export const useStyles = createUseStyles({
     },
     cardContainer: {
       width: "85%",
-      height: "12rem",
+      height: "15rem",
       marginRight: "unset",
-      marginTop: "5rem",
+      flexDirection: "row",
+      alignContent: "center",
+      justifyContent: "space-between",
+    },
+    dragHandle: {
+      bottom: "0",
+      right: "1rem",
+      left: "unset",
+    },
+    textContainer: {
+      marginBottom: "unset",
+      width: "85%",
     },
     projectTitle: {
       fontSize: "1.5rem",
@@ -115,7 +130,8 @@ export const useStyles = createUseStyles({
     },
     addNew: {
       margin: "0.4rem",
-      padding: "2rem 0",
+      padding: "3.4rem 0",
+      width: "100%",
     },
   },
 });

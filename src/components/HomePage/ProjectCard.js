@@ -1,6 +1,8 @@
 //dependencies
 import React from "react";
 import Draggable from "react-draggable";
+import { ChevronsDown, ChevronsLeft } from "react-feather";
+
 //context
 // import ProjectContext from "../../context/ProjectContext/ProjectContext";
 
@@ -16,6 +18,8 @@ const ProjectCard = ({ project }) => {
 
   // const { deleteUserProject } = useContext(ProjectContext);
 
+  // console.log(classes.dragHandle);
+
   //setting bounds for desktop and mobile
 
   //onStartHandler
@@ -28,37 +32,43 @@ const ProjectCard = ({ project }) => {
     e.preventDefault();
 
     console.log("onStop -> ", pos.lastY);
-
-    if (!pos.lastY) alert("not moved");
-
-    if (isMobile()) return null;
   };
 
-  const onTouchStartHandler = (e) => {
-    console.log(e);
-    console.log("touch start fired");
-  };
+  const mobileCard = (
+    <div className={classes.cardContainer}>
+      <div className={classes.textContainer}>
+        <h2 className={classes.projectTitle}>{project.title}</h2>
+        <p className={classes.projectDescription}>{project.description}</p>
+      </div>
+      <div className="dragHandler">
+        <ChevronsLeft className={classes.chevronLeft} size={30} />
+      </div>
+    </div>
+  );
+
+  const desktopCard = (
+    <div className={classes.cardContainer}>
+      <div className={classes.textContainer}>
+        <h2 className={classes.projectTitle}>{project.title}</h2>
+        <p className={classes.projectDescription}>{project.description}</p>
+      </div>
+      <div className="dragHandler">
+        <ChevronsDown size={30} />
+      </div>
+    </div>
+  );
 
   return (
     <Draggable
       axis={isMobile() ? "x" : "y"}
       bounds={{ top: -50, bottom: 50, left: -20, right: 20 }}
       grid={[50, -50]}
-      // defaultPosition={{ x: 0, y: 0 }}
       position={{ x: 0, y: 0 }}
       positionOffset={{ x: 0, y: 0 }}
       onStop={onStophandler}
-      onTouchStart={onTouchStartHandler}
+      handle=".dragHandler"
     >
-      <div
-        className={classes.cardContainer}
-        onTouchStart={() => {
-          console.log("touch started");
-        }}
-      >
-        <h2 className={classes.projectTitle}>{project.title}</h2>
-        <p className={classes.projectDescription}>{project.description}</p>
-      </div>
+      {isMobile() ? mobileCard : desktopCard}
     </Draggable>
   );
 };
