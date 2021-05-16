@@ -7,7 +7,7 @@ import { createUseStyles } from "react-jss";
 export const useStyles = createUseStyles({
   btn: {
     background: "transparent",
-    border: (styles) => `1.8px solid ${styles.borderColor}`,
+    border: (styles) => `1.8px solid ${styles.border}`,
     color: (styles) => styles.color,
     padding: "1rem",
     borderRadius: "0.8rem",

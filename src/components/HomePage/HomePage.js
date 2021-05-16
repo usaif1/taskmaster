@@ -8,9 +8,9 @@ import ProjectContext from "../../context/ProjectContext/ProjectContext";
 import AppContext from "../../context/AppContext/AppContext";
 
 //imports
+import Confirm from "../ModalViews/Confirm";
 import Container from "../common/Container/Container";
 import CentralHeading from "../common/CentralHeading/CentralHeading";
-// import projects from "./dummyProjects";
 import ProjectCard from "./ProjectCard";
 import NewProjectCard from "./NewProjectCard";
 import Modal from "../common/Modal/Modal";
@@ -20,10 +20,9 @@ import { useStyles } from "./styles";
 const Home = () => {
   const classes = useStyles();
 
-  const { projects, getUserProjects, projectsLoading } = useContext(
-    ProjectContext
-  );
-  const { refresh } = useContext(AppContext);
+  const { projects, getUserProjects, projectsLoading } =
+    useContext(ProjectContext);
+  const { refresh, modalView } = useContext(AppContext);
 
   useEffect(() => {
     getUserProjects();
@@ -53,12 +52,17 @@ const Home = () => {
           </div>
         )}
       </div>
-      {projects.length < 1 && !projectsLoading && (
+      {!projects.length && !projectsLoading && (
         <p>No projects found. Try adding one</p>
       )}
-      <Modal>
-        <AddNewProject />
-      </Modal>
+      <>
+        <Modal>
+          {modalView === "AddNewProject" ? <AddNewProject /> : null}
+          {modalView === "ConfirmDeleteProject" ? (
+            <Confirm text={"Are you sure you want to delete this project?"} />
+          ) : null}
+        </Modal>
+      </>
     </Container>
   );
 };

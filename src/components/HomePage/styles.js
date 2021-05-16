@@ -37,7 +37,7 @@ export const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     marginRight: "2rem",
-    marginTop: "2rem",
+    marginTop: "3rem",
     padding: "1.2rem",
     borderRadius: "2rem",
     width: window.innerWidth / 9,

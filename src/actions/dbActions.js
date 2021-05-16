@@ -60,9 +60,7 @@ export const deleteProject = (docID) => {
   docRef
     .doc(docID)
     .delete()
-    .then(() => {
-      alert("Project Deleted!");
-    })
+    .then(() => {})
     .catch((err) => {
       alert("Error Deleting Project");
     });

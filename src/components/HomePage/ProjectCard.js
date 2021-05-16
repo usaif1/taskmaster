@@ -1,10 +1,11 @@
 //dependencies
-import React from "react";
+import React, { useContext } from "react";
 import Draggable from "react-draggable";
 import { ChevronsDown, ChevronsLeft } from "react-feather";
 
 //context
-// import ProjectContext from "../../context/ProjectContext/ProjectContext";
+import ProjectContext from "../../context/ProjectContext/ProjectContext";
+import AppContext from "../../context/AppContext/AppContext";
 
 //actions
 import { isMobile } from "../../actions/general";
@@ -16,22 +17,19 @@ import "./styles.css";
 const ProjectCard = ({ project }) => {
   const classes = useStyles();
 
-  // const { deleteUserProject } = useContext(ProjectContext);
-
-  // console.log(classes.dragHandle);
+  const { setProjectID } = useContext(ProjectContext);
+  const { openModal, setModalView } = useContext(AppContext);
 
   //setting bounds for desktop and mobile
 
-  //onStartHandler
-  // const onStartHandler = (e) => {
-  //   // console.log(e);
-  // };
-
   //onStopHandler
   const onStophandler = async (e, pos) => {
-    e.preventDefault();
-
-    console.log("onStop -> ", pos.lastY);
+    if ((isMobile() && pos?.lastX === -20) || pos.lastY === 20) {
+      setModalView("ConfirmDeleteProject");
+      setProjectID(project.docID);
+      openModal();
+      return;
+    }
   };
 
   const mobileCard = (
@@ -41,7 +39,11 @@ const ProjectCard = ({ project }) => {
         <p className={classes.projectDescription}>{project.description}</p>
       </div>
       <div className="dragHandler">
-        <ChevronsLeft className={classes.chevronLeft} size={30} />
+        <ChevronsLeft
+          className={classes.chevronLeft}
+          size={25}
+          color="#FF3636"
+        />
       </div>
     </div>
   );
@@ -53,23 +55,25 @@ const ProjectCard = ({ project }) => {
         <p className={classes.projectDescription}>{project.description}</p>
       </div>
       <div className="dragHandler">
-        <ChevronsDown size={30} />
+        <ChevronsDown size={25} color="#FF3636" />
       </div>
     </div>
   );
 
   return (
-    <Draggable
-      axis={isMobile() ? "x" : "y"}
-      bounds={{ top: -50, bottom: 50, left: -20, right: 20 }}
-      grid={[50, -50]}
-      position={{ x: 0, y: 0 }}
-      positionOffset={{ x: 0, y: 0 }}
-      onStop={onStophandler}
-      handle=".dragHandler"
-    >
-      {isMobile() ? mobileCard : desktopCard}
-    </Draggable>
+    <>
+      <Draggable
+        axis={isMobile() ? "x" : "y"}
+        bounds={{ bottom: 20, left: -20, top: 0, right: 0 }}
+        grid={[20, -20]}
+        position={{ x: 0, y: 0 }}
+        positionOffset={{ x: 0, y: 0 }}
+        onStop={onStophandler}
+        handle=".dragHandler"
+      >
+        {isMobile() ? mobileCard : desktopCard}
+      </Draggable>
+    </>
   );
 };
 

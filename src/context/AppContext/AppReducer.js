@@ -1,5 +1,10 @@
 //imports
-import { OPEN_MODAL, CLOSE_MODAL, REFRESH_PAGE } from "../../actions/types";
+import {
+  SET_MODAL_VIEW,
+  OPEN_MODAL,
+  CLOSE_MODAL,
+  REFRESH_PAGE,
+} from "../../actions/types";
 
 const AppReducer = (state, action) => {
   switch (action.type) {
@@ -19,6 +24,12 @@ const AppReducer = (state, action) => {
       return {
         ...state,
         refresh: !state.refresh,
+      };
+
+    case SET_MODAL_VIEW:
+      return {
+        ...state,
+        modalView: action.payload,
       };
 
     default:

@@ -94,7 +94,7 @@ const styles = {
 
   add: {
     color: `#51B800`,
-    borderColor: `#51B800`,
+    border: `#51B800`,
     hover: {
       color: "white",
       background: `${Colors.bgGreen}`,
@@ -103,7 +103,7 @@ const styles = {
 
   cancel: {
     color: "#FF6666",
-    borderColor: `#FF6666`,
+    border: `#FF6666`,
     hover: {
       color: "white",
       background: `${Colors.bgRed}`,

@@ -1,14 +1,27 @@
 //dependencies
-import { useReducer } from "react";
+import React, { useReducer } from "react";
 
 //imports
 import initialState from "./state";
 import AppContext from "./AppContext";
 import AppReducer from "./AppReducer";
-import { OPEN_MODAL, CLOSE_MODAL, REFRESH_PAGE } from "../../actions/types";
+import {
+  OPEN_MODAL,
+  CLOSE_MODAL,
+  REFRESH_PAGE,
+  SET_MODAL_VIEW,
+} from "../../actions/types";
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  //set modal view
+  const setModalView = (view) => {
+    dispatch({
+      type: SET_MODAL_VIEW,
+      payload: view,
+    });
+  };
 
   //open modal
   const openModal = () => {
@@ -37,7 +50,7 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ ...state, openModal, closeModal, refreshPage }}
+      value={{ ...state, openModal, closeModal, refreshPage, setModalView }}
     >
       {children}
     </AppContext.Provider>
@@ -45,3 +58,11 @@ const AppProvider = ({ children }) => {
 };
 
 export default AppProvider;
+
+export const useApp = () => {
+  const context = React.createContext(AppContext);
+  if (context === undefined) {
+    throw new Error(`useUI must be used within a UIProvider`);
+  }
+  return context;
+};
