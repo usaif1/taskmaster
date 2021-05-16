@@ -11,10 +11,16 @@ import { useStyles } from "./styles";
 const NewProjectCard = () => {
   const classes = useStyles();
 
-  const { openModal } = useContext(AppContext);
+  const { openModal, setModalView } = useContext(AppContext);
 
   return (
-    <div className={classes.cardContainer} onClick={openModal}>
+    <div
+      className={`${classes.cardContainer} ${classes.noGrabbing}`}
+      onClick={() => {
+        setModalView("AddNewProject");
+        openModal();
+      }}
+    >
       <div className={classes.addNew}>
         <div
           style={{

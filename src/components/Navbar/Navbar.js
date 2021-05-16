@@ -41,7 +41,7 @@ const Navbar = () => {
                 position: "absolute",
                 color: "white",
                 right: "10rem",
-                borderColor: "white",
+                border: "white",
                 fontSize: "1.6rem",
                 hover: {
                   color: "#000000",

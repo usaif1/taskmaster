@@ -1,0 +1,21 @@
+.react-draggable {
+  transition-duration: 0.3s;
+}
+
+.dragHandler {
+  position: absolute;
+  bottom: 1rem;
+  left: 43%;
+  cursor: grabbing;
+}
+
+@media screen and (max-width: 600px) {
+  .dragHandler {
+    bottom: 0;
+    right: 1rem;
+    left: unset;
+    width: 3rem;
+    margin-left: 1rem;
+    height: 100%;
+  }
+}

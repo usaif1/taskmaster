@@ -26,6 +26,14 @@ export const useStyles = createUseStyles({
     marginTop: "1rem",
   },
 
+  /*Confirm Modal Styles*/
+
+  confirmText: {
+    fontSize: "1.8rem",
+    fontWeight: "600",
+    textAlign: "center",
+  },
+
   /*Media Queries*/
 
   "@media only screen and (max-width: 600px)": {
@@ -37,6 +45,9 @@ export const useStyles = createUseStyles({
     },
     btnContainer: {
       justifyContent: "center",
+    },
+    confirmText: {
+      fontSize: "1.4rem",
     },
   },
 });

@@ -1,5 +1,5 @@
 //imports
-import { FETCH_USER_PROJECTS } from "../../actions/types";
+import { FETCH_USER_PROJECTS, SET_PROJECT_ID } from "../../actions/types";
 
 const ProjectReducer = (state, action) => {
   switch (action.type) {
@@ -8,6 +8,12 @@ const ProjectReducer = (state, action) => {
         ...state,
         projects: action.payload,
         projectsLoading: false,
+      };
+
+    case SET_PROJECT_ID:
+      return {
+        ...state,
+        projectId: action.payload,
       };
 
     default:
