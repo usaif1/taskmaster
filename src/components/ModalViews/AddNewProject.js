@@ -1,9 +1,11 @@
 //dependencies
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+
+//context
+import { useApp } from "context/AppContext/AppProvider";
 
 //actions
 import { addNewProject } from "actions/dbActions";
-import AppContext from "context/AppContext/AppContext";
 
 //imports
 import OutlinedButton from "../common/OutlinedButton/OutlinedButton";
@@ -11,14 +13,14 @@ import { Colors } from "utils/Colors";
 import { useStyles } from "./styles";
 
 const AddNewProject = () => {
+	const { closeModal, refreshPage } = useApp();
+
 	const classes = useStyles();
 
 	const [formData, setFormData] = useState({
 		title: "",
 		description: "",
 	});
-
-	const { closeModal, refreshPage } = useContext(AppContext);
 
 	//onchange handler
 	const onChangeHandler = e => {

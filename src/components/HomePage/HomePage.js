@@ -1,11 +1,11 @@
 //dependencies
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import { ArrowRight } from "react-feather";
 import ScaleLoader from "react-spinners/ScaleLoader";
 
 //context
-import ProjectContext from "context/ProjectContext/ProjectContext";
-import AppContext from "context/AppContext/AppContext";
+import { useProject } from "context/ProjectContext/ProjectProvider";
+import { useApp } from "context/AppContext/AppProvider";
 
 //imports
 import Confirm from "../ModalViews/Confirm";
@@ -18,11 +18,10 @@ import AddNewProject from "../ModalViews/AddNewProject";
 import { useStyles } from "./styles";
 
 const Home = () => {
-	const classes = useStyles();
+	const { refresh, modalView } = useApp();
+	const { projects, getUserProjects, projectsLoading } = useProject();
 
-	const { projects, getUserProjects, projectsLoading } =
-		useContext(ProjectContext);
-	const { refresh, modalView } = useContext(AppContext);
+	const classes = useStyles();
 
 	useEffect(() => {
 		getUserProjects();

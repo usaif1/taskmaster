@@ -1,12 +1,12 @@
 //dependencies
-import React, { useContext } from "react";
+import React from "react";
 
 //actions
 import { deleteProject } from "actions/dbActions";
 
 //context
-import AppContext from "context/AppContext/AppContext";
-import ProjectContext from "context/ProjectContext/ProjectContext";
+import { useApp } from "context/AppContext/AppProvider";
+import { useProject } from "context/ProjectContext/ProjectProvider";
 
 //imports
 import OutlinedButton from "../common/OutlinedButton/OutlinedButton";
@@ -14,8 +14,8 @@ import { useStyles } from "./styles";
 import { Colors } from "utils/Colors";
 
 const Confirm = props => {
-	const { closeModal, refreshPage } = useContext(AppContext);
-	const { projectId } = useContext(ProjectContext);
+	const { closeModal, refreshPage } = useApp();
+	const { projectId } = useProject();
 
 	const classes = useStyles();
 

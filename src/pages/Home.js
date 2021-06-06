@@ -2,7 +2,7 @@
 import React from "react";
 
 //context
-import ProjectProvider from "context/ProjectContext/ProjectProvider";
+import { ProjectProvider } from "context/ProjectContext/ProjectProvider";
 
 //actions
 import { isUserSignedIn } from "actions/authActions";

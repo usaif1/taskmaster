@@ -1,15 +1,15 @@
 //dependencies
-import React, { useContext } from "react";
+import React from "react";
 import ReactModal from "react-modal";
 
 //actions
 import { isMobile } from "actions/general";
 
 //context
-import AppContext from "context/AppContext/AppContext";
+import { useApp } from "context/AppContext/AppProvider";
 
 const Modal = props => {
-	const { open, closeModal, modalView } = useContext(AppContext);
+	const { open, closeModal, modalView } = useApp();
 
 	let content;
 
