@@ -1,6 +1,7 @@
 //dependencies
 import React from "react";
 import Draggable from "react-draggable";
+import { useHistory } from "react-router-dom";
 import { ChevronsDown, ChevronsLeft } from "react-feather";
 
 //context
@@ -17,13 +18,14 @@ import "./styles.css";
 const ProjectCard = ({ project }) => {
 	const { openModal, setModalView } = useApp();
 	const { setProjectID } = useProject();
+	const history = useHistory();
 
 	const classes = useStyles();
 
 	//setting bounds for desktop and mobile
 
 	//onStopHandler
-	const onStopHandler = async (e, pos) => {
+	const onStopHandler = (e, pos) => {
 		if ((isMobile() && pos?.lastX === -20) || pos.lastY === 20) {
 			setModalView("ConfirmDeleteProject");
 			setProjectID(project.docID);
@@ -32,8 +34,13 @@ const ProjectCard = ({ project }) => {
 		}
 	};
 
+	//onClickHandler
+	const onClickHandler = () => {
+		history.push(`/project/${project.docID}`);
+	};
+
 	const mobileCard = (
-		<div className={classes.cardContainer}>
+		<div className={classes.cardContainer} onClick={onClickHandler}>
 			<div className={classes.textContainer}>
 				<h2 className={classes.projectTitle}>{project.title}</h2>
 				<p className={classes.projectDescription}>{project.description}</p>
@@ -49,7 +56,7 @@ const ProjectCard = ({ project }) => {
 	);
 
 	const desktopCard = (
-		<div className={classes.cardContainer}>
+		<div className={classes.cardContainer} onClick={onClickHandler}>
 			<div className={classes.textContainer}>
 				<h2 className={classes.projectTitle}>{project.title}</h2>
 				<p className={classes.projectDescription}>{project.description}</p>
