@@ -2,13 +2,21 @@
 import { useReducer, useContext } from "react";
 
 //actions
-import { getMyProjects, deleteProject } from "../../actions/dbActions";
+import {
+	getMyProjects,
+	deleteProject,
+	getProjectById,
+} from "../../actions/dbActions";
 
 //imports
 import initialState from "./state";
 import ProjectContext from "./ProjectContext";
 import ProjectReducer from "./ProjectReducer";
-import { FETCH_USER_PROJECTS, SET_PROJECT_ID } from "../../actions/types";
+import {
+	FETCH_USER_PROJECTS,
+	SET_PROJECT_ID,
+	SET_PROJECT_DETAILS,
+} from "../../actions/types";
 
 export const ProjectProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(ProjectReducer, initialState);
@@ -36,9 +44,24 @@ export const ProjectProvider = ({ children }) => {
 		});
 	};
 
+	const setProjectDetails = async docID => {
+		const project = await getProjectById(docID);
+		if (project?.id) {
+			dispatch({ type: SET_PROJECT_DETAILS, payload: project });
+		} else {
+			throw Error;
+		}
+	};
+
 	return (
 		<ProjectContext.Provider
-			value={{ ...state, getUserProjects, deleteUserProject, setProjectID }}
+			value={{
+				...state,
+				getUserProjects,
+				deleteUserProject,
+				setProjectID,
+				setProjectDetails,
+			}}
 		>
 			{children}
 		</ProjectContext.Provider>

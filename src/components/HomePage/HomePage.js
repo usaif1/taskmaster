@@ -1,7 +1,6 @@
 //dependencies
 import React, { useEffect } from "react";
 import { ArrowRight } from "react-feather";
-import ScaleLoader from "react-spinners/ScaleLoader";
 
 //context
 import { useProject } from "context/ProjectContext/ProjectProvider";
@@ -15,6 +14,7 @@ import ProjectCard from "./ProjectCard";
 import NewProjectCard from "./NewProjectCard";
 import Modal from "../common/Modal/Modal";
 import AddNewProject from "../ModalViews/AddNewProject";
+import BarLoader from "../common/BarLoader/BarLoader";
 import { useStyles } from "./styles";
 
 const Home = () => {
@@ -42,13 +42,11 @@ const Home = () => {
 			<div className={classes.listContainer} style={{ overflow: "visible" }}>
 				<NewProjectCard />
 				{!projectsLoading ? (
-					projects.map(project => {
+					projects.map((project) => {
 						return <ProjectCard project={project} key={project.id} />;
 					})
 				) : (
-					<div className={classes.scaleLoaderContainer}>
-						<ScaleLoader color="#000000" height={20} />
-					</div>
+					<BarLoader styles={{ marginLeft: "5rem" }} />
 				)}
 			</div>
 			{!projects.length && !projectsLoading && (

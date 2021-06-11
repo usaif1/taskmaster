@@ -57,24 +57,13 @@ export const getMyProjects = async () => {
 export const getProjectById = async pid => {
 	const db = firebase.firestore();
 	const docRef = db.collection("projects");
-	let projects = [];
 	try {
 		const doc = await docRef.doc(`${pid}`).get();
 		if (doc.exists) {
-			return console.log(doc.data());
+			return doc.data();
 		} else {
-			console.log("No such document");
+			return alert("No Project Found!");
 		}
-
-		// console.log(doc.query);
-
-		// doc.forEach(doc => {
-		// 	projects.push({
-		// 		docID: doc.id,
-		// 		...doc.data(),
-		// 	});
-		// });
-		// return projects;
 	} catch (err) {
 		alert("Error fetching project");
 		console.log("err fetching single project --> ", err);

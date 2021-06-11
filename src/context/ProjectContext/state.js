@@ -1,8 +1,10 @@
 //initial state
 const initialState = {
-  projects: [],
-  projectId: null,
-  projectsLoading: true,
+	projects: [],
+	projectsLoading: true,
+	projectId: null,
+	projectDetails: {},
+	projectDetailsLoading: true,
 };
 
 export default initialState;
