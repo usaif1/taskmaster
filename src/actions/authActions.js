@@ -15,9 +15,7 @@ export const signup = (email, password, history, setLoading) => {
     .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(async () => {
       try {
-        const newUser = await firebase
-          .auth()
-          .createUserWithEmailAndPassword(email, password);
+        const newUser = await firebase.auth().createUserWithEmailAndPassword(email, password);
 
         //update displayName as soon as user signs in
         await newUser.user.updateProfile({
@@ -116,13 +114,15 @@ export const googleLogin = (history, setLoading2) => {
 };
 
 //logout user
-export const logout = () => {
+export const logout = (history) => {
+  debugger;
   firebase
     .auth()
     .signOut()
     .then(() => {
       alert("signed out");
       localStorage.removeItem("user");
+      history.push("/");
       window.location.reload();
     })
     .catch((err) => {
