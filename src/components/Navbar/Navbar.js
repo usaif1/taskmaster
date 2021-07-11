@@ -3,8 +3,8 @@ import React from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 //actions
-import { isMobile } from "../../actions/general";
-import { isUserSignedIn, logout } from "../../actions/authActions";
+import { isMobile } from "actions/general";
+import { isUserSignedIn, logout } from "actions/authActions";
 
 //imports
 import CentralSubheading from "../common/CentralSubheading/CentralSubheading";
@@ -21,7 +21,7 @@ const Navbar = () => {
   //onclick handler
   const onClickHandler = () => {
     if (isUserSignedIn()) {
-      logout();
+      logout(history);
     } else {
       return location.pathname === "/login" ? null : history.push("/login");
     }
@@ -53,11 +53,7 @@ const Navbar = () => {
               {isUserSignedIn() ? (
                 "Logout"
               ) : (
-                <Link
-                  className={classes.link}
-                  style={{ color: "inherit" }}
-                  to="/login"
-                >
+                <Link className={classes.link} style={{ color: "inherit" }} to="/login">
                   Sign In
                 </Link>
               )}

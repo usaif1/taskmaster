@@ -5,7 +5,7 @@ export const useStyles = createUseStyles({
     fontSize: (styles) => styles.size,
     textAlign: "center",
     color: (styles) => styles.color,
-    marginTop: "10rem",
+    // marginTop: "10rem",
   },
 
   "@media only screen and (max-width: 600px)": {

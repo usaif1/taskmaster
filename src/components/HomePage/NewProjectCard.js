@@ -1,41 +1,41 @@
 //dependencies
-import React, { useContext } from "react";
+import React from "react";
 import { Plus } from "react-feather";
 
 //context
-import AppContext from "../../context/AppContext/AppContext";
+import { useApp } from "context/AppContext/AppProvider";
 
 //imports
 import { useStyles } from "./styles";
 
 const NewProjectCard = () => {
-  const classes = useStyles();
+	const { openModal, setModalView } = useApp();
 
-  const { openModal, setModalView } = useContext(AppContext);
+	const classes = useStyles();
 
-  return (
-    <div
-      className={`${classes.cardContainer} ${classes.noGrabbing}`}
-      onClick={() => {
-        setModalView("AddNewProject");
-        openModal();
-      }}
-    >
-      <div className={classes.addNew}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Plus />
-          <p className={classes.projectDescription}>Add New Project</p>
-        </div>
-      </div>
-    </div>
-  );
+	return (
+		<div
+			className={`${classes.cardContainer} ${classes.noGrabbing}`}
+			onClick={() => {
+				setModalView("AddNewProject");
+				openModal();
+			}}
+		>
+			<div className={classes.addNew}>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						alignItems: "center",
+						justifyContent: "center",
+					}}
+				>
+					<Plus />
+					<p className={classes.projectDescription}>Add New Project</p>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default NewProjectCard;

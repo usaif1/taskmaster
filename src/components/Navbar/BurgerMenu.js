@@ -2,20 +2,22 @@
 import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { v4 as uuid } from "uuid";
+import { useHistory } from "react-router-dom";
 
 //actions
-import { isMobile } from "../../actions/general";
-import { isUserSignedIn, logout } from "../../actions/authActions";
+import { isMobile } from "actions/general";
+import { isUserSignedIn, logout } from "actions/authActions";
 
 //imports
 import { links, mobileOnlyLinks } from "./NavbarLinks";
 import LinkCard from "./LinkCard";
-import { Colors } from "../../utils/Colors";
+import { Colors } from "utils/Colors";
 import SolidButton from "../common/SolidButton/SolidButton";
 import "./bmStyles.modules.css";
 
 const BurgerMenu = () => {
   const [open, setOpen] = useState(false);
+  const history = useHistory();
 
   //handle state change burger menu
   const handleStateChange = (state) => {
@@ -24,7 +26,7 @@ const BurgerMenu = () => {
 
   // logout button onClick handler
   const onClickHandler = () => {
-    logout();
+    logout(history);
     setOpen(false);
   };
 

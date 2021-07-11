@@ -5,7 +5,7 @@ import React from "react";
 import CentralHeading from "../common/CentralHeading/CentralHeading";
 
 const LandingPage = () => {
-  return <CentralHeading title={"Welcome to TaskMaster!"} />;
+	return <CentralHeading title={"Welcome to TaskMaster!"} />;
 };
 
 export default LandingPage;
