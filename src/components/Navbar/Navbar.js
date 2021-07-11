@@ -7,8 +7,7 @@ import { isMobile } from "actions/general";
 import { isUserSignedIn, logout } from "actions/authActions";
 
 //imports
-import CentralSubheading from "../common/CentralSubheading/CentralSubheading";
-import OutlinedButton from "../common/OutlinedButton/OutlinedButton";
+import { CentralSubheading, OutlinedButton } from "components/common";
 import BurgerMenu from "./BurgerMenu";
 import { useStyles } from "./styles";
 

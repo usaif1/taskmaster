@@ -12,7 +12,7 @@ import { isUserSignedIn, logout } from "actions/authActions";
 import { links, mobileOnlyLinks } from "./NavbarLinks";
 import LinkCard from "./LinkCard";
 import { Colors } from "utils/Colors";
-import SolidButton from "../common/SolidButton/SolidButton";
+import { SolidButton } from "components/common";
 import "./bmStyles.modules.css";
 
 const BurgerMenu = () => {
