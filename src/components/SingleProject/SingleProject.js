@@ -6,6 +6,9 @@ import { DragDropContext } from "react-beautiful-dnd";
 //context
 import { useProject } from "context/ProjectContext/ProjectProvider";
 
+//actions
+import { move, reorder } from "actions/listActions";
+
 //imports
 import { Container, CentralHeading, CentralSubheading, BarLoader } from "components/common";
 import TaskContainer from "../TaskCard/TaskContainer";
@@ -94,30 +97,6 @@ const SingleProject = () => {
 
   const getTasksByStatus = (droppable_status) => {
     return tasks[droppable_status];
-  };
-
-  //to move within same list
-  const reorder = (list, startIndex, endIndex) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
-    return result;
-  };
-
-  // Move item from one list to other
-  const move = (source, destination, droppableSource, droppableDestination) => {
-    const sourceClone = Array.from(source);
-    const destClone = Array.from(destination);
-    const [removed] = sourceClone.splice(droppableSource.index, 1);
-
-    destClone.splice(droppableDestination.index, 0, removed);
-
-    const result = {};
-    result[droppableSource.droppableId] = sourceClone;
-    result[droppableDestination.droppableId] = destClone;
-
-    return result;
   };
 
   const onDragEnd = (result) => {
