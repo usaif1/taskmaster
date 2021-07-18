@@ -40,7 +40,7 @@ const Home = () => {
             return <ProjectCard project={project} key={project.id} />;
           })
         ) : (
-          <BarLoader styles={{ marginLeft: "5rem" }} />
+          <BarLoader className={classes.BarLoader} />
         )}
       </div>
       {!projects.length && !projectsLoading && <p>No projects found. Try adding one</p>}

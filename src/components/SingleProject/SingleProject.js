@@ -21,46 +21,68 @@ const SingleProject = () => {
   const [tasks, setTasks] = useState({
     pending: [
       {
-        id: 1,
+        id: "1",
         text: "Work on bug 1",
       },
       {
-        id: 2,
+        id: "2",
         text: "Work on bug 2",
       },
       {
-        id: 3,
+        id: "3",
         text: "Work on bug 3",
       },
       {
-        id: 4,
+        id: "4",
         text: "Work on bug 4",
       },
       {
-        id: 5,
+        id: "5",
         text: "Work on bug 5",
       },
     ],
     progress: [
       {
-        id: 6,
+        id: "6",
         text: "Working on bug 1",
       },
       {
-        id: 7,
+        id: "7",
         text: "Working on bug 2",
       },
       {
-        id: 8,
+        id: "8",
         text: "Working on bug 3",
       },
       {
-        id: 9,
+        id: "9",
         text: "Working on bug 4",
       },
       {
-        id: 10,
+        id: "10",
         text: "Working on bug 5",
+      },
+    ],
+    completed: [
+      {
+        id: "11",
+        text: "Completed bug 1",
+      },
+      {
+        id: "12",
+        text: "Completed bug 2",
+      },
+      {
+        id: "13",
+        text: "Completed bug 3",
+      },
+      {
+        id: "14",
+        text: "Completed bug 4",
+      },
+      {
+        id: "15",
+        text: "Completed bug 5",
       },
     ],
   });
@@ -75,31 +97,65 @@ const SingleProject = () => {
     return tasks[droppable_status];
   };
 
+  //to move within same list
+  const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
+  // Move item from one list to other
+  const move = (source, destination, droppableSource, droppableDestination) => {
+    const sourceClone = Array.from(source);
+    const destClone = Array.from(destination);
+    const [removed] = sourceClone.splice(droppableSource.index, 1);
+
+    destClone.splice(droppableDestination.index, 0, removed);
+
+    const result = {};
+    result[droppableSource.droppableId] = sourceClone;
+    result[droppableDestination.droppableId] = destClone;
+
+    return result;
+  };
+
   const onDragEnd = (result) => {
     // console.log(result);
     const { source, destination } = result;
 
-    console.log("destination", destination);
-    console.log("result", result);
+    // console.log("destination", destination);
+    // console.log("result", result);
 
     if (!destination) return;
 
     //if reorder in same list
-    // if (source.droppableId === destination.droppableId) {
-    //   const items = reorder(tasks[droppableId], source.index, destination.index);
-    //   // console.log(items);
-    //   setTasks({ ...tasks, [`${droppableId}`]: items });
-    // } else {
-    //   // debugger;
-    //   const result = move(
-    //     getTasksByStatus(source.droppableId),
-    //     getTasksByStatus(destination.droppableId),
-    //     source,
-    //     destination
-    //   );
+    if (source.droppableId === destination.droppableId) {
+      const items = reorder(tasks[source.droppableId], source.index, destination.index);
+      // console.log(items);
+      setTasks({ ...tasks, [`${source.droppableId}`]: items });
+    } else {
+      // debugger;
+      const result = move(
+        getTasksByStatus(source.droppableId),
+        getTasksByStatus(destination.droppableId),
+        source,
+        destination
+      );
 
-    //   // console.log(result);
-    // }
+      // console.log("result -> ", result);
+      // console.log("result source -> ", result[`${source.droppableId}`]);
+      // console.log("result -> ", result[destination.droppableId]);
+      setTasks({
+        ...tasks,
+        [`${source.droppableId}`]: result[`${source.droppableId}`],
+        [`${destination.droppableId}`]: result[`${destination.droppableId}`],
+        // pending: result.pending,
+        // progress: result.progress,
+      });
+      // console.log(result);
+    }
 
     //if move between lists
   };
@@ -123,6 +179,13 @@ const SingleProject = () => {
               <TaskContainer
                 title="In Progress"
                 droppableId="progress"
+                tasks={tasks}
+                setTasks={setTasks}
+                getTasksByStatus={getTasksByStatus}
+              />
+              <TaskContainer
+                title="Completed"
+                droppableId="completed"
                 tasks={tasks}
                 setTasks={setTasks}
                 getTasksByStatus={getTasksByStatus}

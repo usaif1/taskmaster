@@ -2,16 +2,15 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { createUseStyles } from "react-jss";
+import { v4 as uuid } from "uuid";
 
 //imports
 
 const TaskCard = ({ task, index }) => {
   const classes = useStyles();
 
-  // console.log(task);
-
   return (
-    <Draggable draggableId={task.id.toString()} index={index}>
+    <Draggable draggableId={task.id} index={index} key={task.id}>
       {(provided) => {
         // console.log("dragHandle", provided.dragHandleProps);
         // console.log("draggable", provided.draggableProps);

@@ -38,8 +38,8 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks, droppableId2, getT
     // console.log(result);
     const { source, destination } = result;
 
-    console.log("destination", destination);
-    console.log("result", result);
+    // console.log("destination", destination);
+    // console.log("result", result);
 
     if (!destination) return;
 
@@ -49,14 +49,14 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks, droppableId2, getT
       // console.log(items);
       setTasks({ ...tasks, [`${droppableId}`]: items });
     } else {
-      // debugger;
+      debugger;
       const result = move(
         getTasksByStatus(source.droppableId),
         getTasksByStatus(destination.droppableId),
         source,
         destination
       );
-
+      console.log("result --> ", result);
       // console.log(result);
     }
 
@@ -83,11 +83,7 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks, droppableId2, getT
                 ref={provided.innerRef}
               >
                 {tasks[droppableId].map((task, index) => {
-                  return (
-                    <div>
-                      <TaskCard key={index} task={task} index={index} />
-                    </div>
-                  );
+                  return <TaskCard key={index} task={task} index={index} />;
                 })}
                 {provided.placeholder}
               </ul>
