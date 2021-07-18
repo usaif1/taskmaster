@@ -9,7 +9,6 @@ import { useProject } from "context/ProjectContext/ProjectProvider";
 //imports
 import { Container, CentralHeading, CentralSubheading, BarLoader } from "components/common";
 import TaskContainer from "../TaskCard/TaskContainer";
-import { pendingTasks, inProgressTasks } from "../TaskCard/dummyData";
 import { useStyles } from "./styles";
 
 const SingleProject = () => {
@@ -122,21 +121,16 @@ const SingleProject = () => {
   };
 
   const onDragEnd = (result) => {
-    // console.log(result);
     const { source, destination } = result;
-
-    // console.log("destination", destination);
-    // console.log("result", result);
 
     if (!destination) return;
 
     //if reorder in same list
     if (source.droppableId === destination.droppableId) {
       const items = reorder(tasks[source.droppableId], source.index, destination.index);
-      // console.log(items);
       setTasks({ ...tasks, [`${source.droppableId}`]: items });
     } else {
-      // debugger;
+      //to move data across different lists
       const result = move(
         getTasksByStatus(source.droppableId),
         getTasksByStatus(destination.droppableId),
@@ -144,20 +138,12 @@ const SingleProject = () => {
         destination
       );
 
-      // console.log("result -> ", result);
-      // console.log("result source -> ", result[`${source.droppableId}`]);
-      // console.log("result -> ", result[destination.droppableId]);
       setTasks({
         ...tasks,
         [`${source.droppableId}`]: result[`${source.droppableId}`],
         [`${destination.droppableId}`]: result[`${destination.droppableId}`],
-        // pending: result.pending,
-        // progress: result.progress,
       });
-      // console.log(result);
     }
-
-    //if move between lists
   };
 
   return (
