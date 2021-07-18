@@ -11,5 +11,8 @@ export const useStyles = createUseStyles({
     background: "#000000",
     color: "#ffffff",
   },
+  addNewInput: {
+    translate: "120px, 50%",
+  },
   "@media only screen and (max-width: 600px)": {},
 });

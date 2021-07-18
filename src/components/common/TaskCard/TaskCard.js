@@ -23,7 +23,7 @@ const TaskCard = ({ task, index }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            {task.text}
+            {task.description}
           </li>
         );
       }}
