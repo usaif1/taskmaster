@@ -1,7 +1,7 @@
 //dependencies
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext } from "react-beautiful-dnd";
 
 //context
 import { useProject } from "context/ProjectContext/ProjectProvider";
@@ -154,28 +154,10 @@ const SingleProject = () => {
           <CentralSubheading title={projectDetails.description} />
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <DragDropContext onDragEnd={onDragEnd}>
-              {/* For multiple lists to work correctly, they should be inside same context*/}
-              <TaskContainer
-                title="Pending"
-                droppableId="pending"
-                tasks={tasks}
-                setTasks={setTasks}
-                getTasksByStatus={getTasksByStatus}
-              />
-              <TaskContainer
-                title="In Progress"
-                droppableId="progress"
-                tasks={tasks}
-                setTasks={setTasks}
-                getTasksByStatus={getTasksByStatus}
-              />
-              <TaskContainer
-                title="Completed"
-                droppableId="completed"
-                tasks={tasks}
-                setTasks={setTasks}
-                getTasksByStatus={getTasksByStatus}
-              />
+              {/* For multiple lists to work correctly, all lists should be inside same context*/}
+              <TaskContainer title="Pending" droppableId="pending" tasks={tasks} />
+              <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} />
+              <TaskContainer title="Completed" droppableId="completed" tasks={tasks} />
             </DragDropContext>
           </div>
         </>
@@ -189,49 +171,3 @@ const SingleProject = () => {
 };
 
 export default SingleProject;
-
-// const [tasks1, setTasks1] = useState([
-//   {
-//     id: 1,
-//     text: "Work on bug 1",
-//   },
-//   {
-//     id: 2,
-//     text: "Work on bug 2",
-//   },
-//   {
-//     id: 3,
-//     text: "Work on bug 3",
-//   },
-//   {
-//     id: 4,
-//     text: "Work on bug 4",
-//   },
-//   {
-//     id: 5,
-//     text: "Work on bug 5",
-//   },
-// ]);
-
-// const [tasks2, setTasks2] = useState([
-//   {
-//     id: 6,
-//     text: "Working on bug 1",
-//   },
-//   {
-//     id: 7,
-//     text: "Working on bug 2",
-//   },
-//   {
-//     id: 8,
-//     text: "Working on bug 3",
-//   },
-//   {
-//     id: 9,
-//     text: "Working on bug 4",
-//   },
-//   {
-//     id: 10,
-//     text: "Working on bug 5",
-//   },
-// ]);

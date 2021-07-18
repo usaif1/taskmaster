@@ -2,7 +2,6 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { createUseStyles } from "react-jss";
-import { v4 as uuid } from "uuid";
 
 //imports
 
@@ -12,9 +11,6 @@ const TaskCard = ({ task, index }) => {
   return (
     <Draggable draggableId={task.id} index={index} key={task.id}>
       {(provided) => {
-        // console.log("dragHandle", provided.dragHandleProps);
-        // console.log("draggable", provided.draggableProps);
-        // console.log(provided.innerRef);
         return (
           <li
             className={classes.listItem}
@@ -24,7 +20,6 @@ const TaskCard = ({ task, index }) => {
             {...provided.dragHandleProps}
           >
             {task.text}
-            {/* asd */}
           </li>
         );
       }}

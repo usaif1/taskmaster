@@ -6,7 +6,7 @@ import { Droppable } from "react-beautiful-dnd";
 import TaskCard from "components/common/TaskCard/TaskCard";
 import { useStyles } from "./styles";
 
-const TaskContainer = ({ title, droppableId, tasks, setTasks, droppableId2, getTasksByStatus }) => {
+const TaskContainer = ({ title, droppableId, tasks }) => {
   const classes = useStyles();
 
   return (
