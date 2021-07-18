@@ -9,7 +9,11 @@ const TaskCard = ({ task, index }) => {
   const classes = useStyles();
 
   return (
-    <Draggable draggableId={task.id} index={index} key={task.id}>
+    <Draggable
+      draggableId={task.id}
+      index={index}
+      key={task.id} // key is required else won't work
+    >
       {(provided) => {
         return (
           <li

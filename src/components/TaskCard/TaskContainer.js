@@ -11,11 +11,7 @@ const TaskContainer = ({ title, droppableId, tasks }) => {
 
   return (
     <div className={classes.container} onDragOver={(e) => e.preventDefault()} onDrop={(e) => e.preventDefault()}>
-      <div
-        className={classes.headingContainer}
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={(e) => e.preventDefault()}
-      >
+      <div className={classes.headingContainer}>
         <h3>{title}</h3>
       </div>
       <div>
