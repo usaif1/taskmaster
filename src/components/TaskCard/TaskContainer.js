@@ -4,7 +4,7 @@ import { Droppable } from "react-beautiful-dnd";
 import { useParams } from "react-router-dom";
 
 //actions
-import { addTask } from "actions/dbActions";
+import { addTask, updateSingleList } from "actions/dbActions";
 
 //imports
 import TaskCard from "components/common/TaskCard/TaskCard";
@@ -36,6 +36,19 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
     });
 
     setValue("");
+  };
+
+  const deleteTask = (index, selectedTask) => {
+    const newArr = tasks[`${droppableId}`].filter((task) => {
+      return task.id !== selectedTask.id;
+    });
+
+    setTasks({
+      ...tasks,
+      [`${droppableId}`]: newArr,
+    });
+
+    updateSingleList(droppableId, newArr, id);
   };
 
   return (
@@ -74,7 +87,7 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
               ref={provided.innerRef}
             >
               {tasks[droppableId].map((task, index) => {
-                return <TaskCard key={index} task={task} index={index} />;
+                return <TaskCard key={index} task={task} index={index} deleteTask={deleteTask} />;
               })}
               {provided.placeholder}
             </ul>

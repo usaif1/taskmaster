@@ -5,7 +5,7 @@ import { createUseStyles } from "react-jss";
 
 //imports
 
-const TaskCard = ({ task, index }) => {
+const TaskCard = ({ task, index, deleteTask }) => {
   const classes = useStyles();
 
   return (
@@ -24,6 +24,9 @@ const TaskCard = ({ task, index }) => {
             {...provided.dragHandleProps}
           >
             {task.description}
+            <span onClick={() => deleteTask(index, task)} style={{ color: "red" }}>
+              &nbsp; delete
+            </span>
           </li>
         );
       }}
