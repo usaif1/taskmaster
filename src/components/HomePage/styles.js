@@ -40,7 +40,7 @@ export const useStyles = createUseStyles({
     marginTop: "3rem",
     padding: "1.2rem",
     borderRadius: "2rem",
-    width: window.innerWidth / 9,
+    width: "18%",
     height: "20rem",
     wordWrap: "break-word",
     overflow: "hidden",
@@ -85,7 +85,7 @@ export const useStyles = createUseStyles({
 
   "@media only screen and (max-width: 1500px)": {
     cardContainer: {
-      width: window.innerWidth / 6,
+      width: "100%",
     },
   },
 

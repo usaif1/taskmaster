@@ -4,7 +4,7 @@ import { createUseStyles } from "react-jss";
 export const useStyles = createUseStyles({
   container: {
     border: "1px solid grey",
-    width: window.innerWidth / 5,
+    width: "30%",
   },
   headingContainer: {
     border: "1px solid red",
