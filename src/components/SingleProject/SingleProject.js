@@ -19,10 +19,10 @@ import { useStyles } from "./styles";
 import "swiper/swiper-bundle.css";
 
 // import Swiper core and required modules
-import SwiperCore, { EffectCube, Pagination } from "swiper/core";
+import SwiperCore, { EffectCoverflow, Pagination, Virtual } from "swiper/core";
 
 // install Swiper modules
-SwiperCore.use([EffectCube, Pagination]);
+SwiperCore.use([Pagination, Virtual, EffectCoverflow]);
 
 const SingleProject = () => {
   const { setProjectDetails, projectDetails, projectDetailsLoading } = useProject();
@@ -70,6 +70,11 @@ const SingleProject = () => {
       updateSingleList(source.droppableId, items, id);
     } else {
       //to move data across different lists
+
+      if (isMobile()) {
+        return null;
+      }
+
       const result = move(
         getTasksByStatus(source.droppableId),
         getTasksByStatus(destination.droppableId),
@@ -93,14 +98,6 @@ const SingleProject = () => {
     }
   };
 
-  const cubeFace = (no) => {
-    return (
-      <div>
-        <p>this is face {no}</p>
-      </div>
-    );
-  };
-
   return (
     <Container>
       {!projectDetailsLoading ? (
@@ -109,14 +106,27 @@ const SingleProject = () => {
           <CentralSubheading title={projectDetails.description} />
           <div className={classes.dragContextContainer}>
             {isMobile() ? (
-              <div>
-                <Swiper effect="cube">
-                  <SwiperSlide>{cubeFace(1)}</SwiperSlide>
-                  <SwiperSlide>{cubeFace(2)}</SwiperSlide>
-                  <SwiperSlide>{cubeFace(3)}</SwiperSlide>
-                  <SwiperSlide>{cubeFace(4)}</SwiperSlide>
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Swiper
+                  effect="coverflow"
+                  coverflowEffect={{
+                    slideShadows: false,
+                  }}
+                  virtual={true}
+                  focusableElements="span"
+                  noSwipingSelector="span"
+                >
+                  <SwiperSlide virtualIndex={0} key="key1">
+                    <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
+                  </SwiperSlide>
+                  <SwiperSlide virtualIndex={1} key="key2">
+                    <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
+                  </SwiperSlide>
+                  <SwiperSlide virtualIndex={2} key="key3">
+                    <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
+                  </SwiperSlide>
                 </Swiper>
-              </div>
+              </DragDropContext>
             ) : (
               <DragDropContext onDragEnd={onDragEnd}>
                 {/* For multiple lists to work correctly, all lists should be inside same context*/}

@@ -11,6 +11,13 @@ export const useStyles = createUseStyles({
     justifyContent: "space-between",
   },
 
+  li: {
+    top: "auto !important",
+    border: "1px solid blue",
+    padding: "1rem",
+    marginTop: "1rem",
+  },
+
   "@media only screen and (max-width: 600px)": {
     dragContextContainer: {
       display: "block",
