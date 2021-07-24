@@ -12,13 +12,13 @@ import HomePage from "components/HomePage/HomePage";
 import LandingPage from "components/LandingPage/LandingPage";
 
 const Home = () => {
-	return isUserSignedIn() ? (
-		<ProjectProvider>
-			<HomePage />
-		</ProjectProvider>
-	) : (
-		<LandingPage />
-	);
+  return isUserSignedIn() ? (
+    <ProjectProvider>
+      <HomePage />
+    </ProjectProvider>
+  ) : (
+    <LandingPage />
+  );
 };
 
 export default Home;

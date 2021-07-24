@@ -10,6 +10,7 @@
     "firebase": "^8.3.1",
     "moment": "^2.29.1",
     "react": "^17.0.1",
+    "react-beautiful-dnd": "^13.1.0",
     "react-burger-menu": "^3.0.6",
     "react-dom": "^17.0.1",
     "react-draggable": "^4.4.3",
@@ -19,6 +20,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-spinners": "^0.10.6",
+    "swiper": "^6.7.5",
     "uuid": "^8.3.2",
     "web-vitals": "^1.0.1"
   },

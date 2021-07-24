@@ -1,10 +1,26 @@
 import { createUseStyles } from "react-jss";
 
 export const useStyles = createUseStyles({
-	loaderContainer: {
-		display: "flex",
-		justifyContent: "center",
-	},
+  loaderContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
 
-	"@media only screen and (max-width: 600px)": {},
+  dragContextContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+
+  li: {
+    top: "auto !important",
+    border: "1px solid blue",
+    padding: "1rem",
+    marginTop: "1rem",
+  },
+
+  "@media only screen and (max-width: 600px)": {
+    dragContextContainer: {
+      display: "block",
+    },
+  },
 });
