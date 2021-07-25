@@ -9,6 +9,8 @@ export const useStyles = createUseStyles({
   dragContextContainer: {
     display: "flex",
     justifyContent: "space-between",
+    position: "relative",
+    zIndex: 0,
   },
 
   li: {
