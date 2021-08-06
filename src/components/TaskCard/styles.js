@@ -14,6 +14,14 @@ export const useStyles = createUseStyles({
   addNewInput: {
     translate: "120px, 50%",
   },
+
+  /* Task list container styles */
+
+  ul: {
+    padding: "3rem",
+    marginBottom: "6rem",
+  },
+
   "@media only screen and (max-width: 600px)": {
     container: {
       width: "99%",

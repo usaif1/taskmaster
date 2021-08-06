@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 //context
 import { useProject } from "context/ProjectContext/ProjectProvider";
@@ -15,6 +14,7 @@ import { isMobile } from "actions/general";
 //imports
 import { Container, CentralHeading, CentralSubheading, BarLoader } from "components/common";
 import TaskContainer from "../TaskCard/TaskContainer";
+import BottomNav from "./BottomNav";
 import { useStyles } from "./styles";
 import "swiper/swiper-bundle.css";
 
@@ -106,27 +106,31 @@ const SingleProject = () => {
           <CentralSubheading title={projectDetails.description} />
           <div className={classes.dragContextContainer}>
             {isMobile() ? (
-              <DragDropContext onDragEnd={onDragEnd}>
-                <Swiper
-                  effect="coverflow"
-                  coverflowEffect={{
-                    slideShadows: false,
-                  }}
-                  virtual={true}
-                  focusableElements="span"
-                  noSwipingSelector="span"
-                >
-                  <SwiperSlide virtualIndex={0} key="key1">
-                    <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
-                  </SwiperSlide>
-                  <SwiperSlide virtualIndex={1} key="key2">
-                    <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
-                  </SwiperSlide>
-                  <SwiperSlide virtualIndex={2} key="key3">
-                    <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
-                  </SwiperSlide>
-                </Swiper>
-              </DragDropContext>
+              <>
+                <DragDropContext onDragEnd={onDragEnd}>
+                  {/* <Swiper
+                    effect="coverflow"
+                    coverflowEffect={{
+                      slideShadows: false,
+                    }}
+                    virtual={true}
+                    focusableElements="span"
+                    noSwipingSelector="span"
+                  >
+                    <SwiperSlide virtualIndex={0} key="key1">
+                      <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
+                    </SwiperSlide>
+                    <SwiperSlide virtualIndex={1} key="key2">
+                      <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
+                    </SwiperSlide>
+                    <SwiperSlide virtualIndex={2} key="key3">
+                      <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
+                    </SwiperSlide>
+                  </Swiper> */}
+                  <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
+                  <BottomNav />
+                </DragDropContext>
+              </>
             ) : (
               <DragDropContext onDragEnd={onDragEnd}>
                 {/* For multiple lists to work correctly, all lists should be inside same context*/}

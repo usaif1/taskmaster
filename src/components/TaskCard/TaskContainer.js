@@ -78,24 +78,18 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
           )}
         </div>
       )}
-      <div style={{ padding: "1rem" }}>
-        <Droppable droppableId={droppableId}>
-          {(provided) => {
-            return (
-              <ul
-                style={{ padding: "30px", border: "1px solid red" }}
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {tasks[droppableId].map((task, index) => {
-                  return <TaskCard key={index} task={task} index={index} deleteTask={deleteTask} />;
-                })}
-                {provided.placeholder}
-              </ul>
-            );
-          }}
-        </Droppable>
-      </div>
+      <Droppable droppableId={droppableId}>
+        {(provided) => {
+          return (
+            <ul className={classes.ul} {...provided.droppableProps} ref={provided.innerRef}>
+              {tasks[droppableId].map((task, index) => {
+                return <TaskCard key={index} task={task} index={index} deleteTask={deleteTask} />;
+              })}
+              {provided.placeholder}
+            </ul>
+          );
+        }}
+      </Droppable>
     </div>
   );
 };

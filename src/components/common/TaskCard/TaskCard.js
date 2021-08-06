@@ -52,8 +52,6 @@ export default TaskCard;
 const useStyles = createUseStyles({
   listItem: {
     padding: "2rem",
-    // top: "10px !important",
-    top: "auto !important",
     marginTop: "2rem",
     border: "1px solid red",
     display: "flex",
