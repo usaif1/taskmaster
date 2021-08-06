@@ -31,7 +31,7 @@ export const useStyles = createUseStyles({
     color: "white",
     display: "flex",
     justifyContent: "space-around",
-    height: "4rem",
+    height: "7vh",
   },
 
   bottomNavWrapper: {
@@ -49,6 +49,14 @@ export const useStyles = createUseStyles({
 
   textSize: {
     fontSize: "1.2rem",
+  },
+
+  noSelect: {
+    WebkitTouchCallout: "none",
+    WebkitUserSelect: "none",
+    MozUserSelect: "none",
+    msUserSelect: "none",
+    userSelect: "none",
   },
 
   "@media only screen and (max-width: 600px)": {

@@ -51,6 +51,8 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
     updateSingleList(droppableId, newArr, id);
   };
 
+  console.log(tasks[droppableId].length);
+
   return (
     <div className={classes.container} onDragOver={(e) => e.preventDefault()} onDrop={(e) => e.preventDefault()}>
       <div className={classes.headingContainer}>
@@ -62,7 +64,7 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
         // onBlur={() => setShowInput(false)}
         >
           {showInput ? (
-            <form onSubmit={onSubmitHandler} style={{ display: "flex" }}>
+            <form onSubmit={onSubmitHandler} style={{ display: "flex", height: "100%" }}>
               <input
                 type="text"
                 className={classes.addNewInput}
@@ -81,12 +83,21 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
       <Droppable droppableId={droppableId}>
         {(provided) => {
           return (
-            <ul className={classes.ul} {...provided.droppableProps} ref={provided.innerRef}>
-              {tasks[droppableId].map((task, index) => {
-                return <TaskCard key={index} task={task} index={index} deleteTask={deleteTask} />;
-              })}
-              {provided.placeholder}
-            </ul>
+            <div
+              style={{
+                overflow: "scroll",
+                height: "40rem",
+                position: "relative",
+                marginTop: "1rem",
+              }}
+            >
+              <ul className={classes.ul} {...provided.droppableProps} ref={provided.innerRef}>
+                {tasks[droppableId].map((task, index) => {
+                  return <TaskCard key={index} task={task} index={index} deleteTask={deleteTask} />;
+                })}
+                {provided.placeholder}
+              </ul>
+            </div>
           );
         }}
       </Droppable>

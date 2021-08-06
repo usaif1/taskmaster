@@ -4,15 +4,33 @@ import React from "react";
 //imports
 import { useStyles } from "./styles";
 
-const BottomNav = () => {
+const BottomNav = ({ setStatus }) => {
   const classes = useStyles();
+
+  const changeStatus = (status) => {
+    setStatus(status);
+  };
 
   return (
     <div className={classes.bottomNavContainer}>
       <div className={classes.bottomNavWrapper}>
-        <p className={`${classes.statusText} ${classes.textSize}`}>Pending</p>
-        <p className={`${classes.statusText} ${classes.textSize}`}>In Progress</p>
-        <p className={classes.textSize} style={{ margin: "0" }}>
+        <p
+          onClick={() => changeStatus("pending")}
+          className={`${classes.statusText} ${classes.textSize} ${classes.noSelect}`}
+        >
+          Pending
+        </p>
+        <p
+          onClick={() => changeStatus("progress")}
+          className={`${classes.statusText} ${classes.textSize} ${classes.noSelect}`}
+        >
+          In Progress
+        </p>
+        <p
+          onClick={() => changeStatus("completed")}
+          className={`${classes.textSize} ${classes.noSelect}`}
+          style={{ margin: "0" }}
+        >
           Completed
         </p>
       </div>
