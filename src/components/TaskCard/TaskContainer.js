@@ -38,7 +38,7 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
     setValue("");
   };
 
-  const deleteTask = (index, selectedTask) => {
+  const deleteTask = (selectedTask) => {
     const newArr = tasks[`${droppableId}`].filter((task) => {
       return task.id !== selectedTask.id;
     });

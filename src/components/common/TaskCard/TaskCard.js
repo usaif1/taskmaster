@@ -21,7 +21,7 @@ const TaskCard = ({ task, index, deleteTask }) => {
         return isMobile() ? (
           <li className={classes.listItem} ref={provided.innerRef} {...provided.draggableProps}>
             {task.description}
-            <span onClick={() => deleteTask(index, task)} style={{ color: "red" }}>
+            <span onClick={() => deleteTask(task)} style={{ color: "red" }}>
               &nbsp; delete
             </span>
             <span style={{ border: "1px solid yellow", padding: "1rem" }} {...provided.dragHandleProps}>
