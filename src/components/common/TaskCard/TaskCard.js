@@ -1,12 +1,12 @@
 //dependencies
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { createUseStyles } from "react-jss";
 
 //actions
 import { isMobile } from "actions/general";
 
 //imports
+import { useStyles } from "./styles";
 
 const TaskCard = ({ task, index, deleteTask }) => {
   const classes = useStyles();
@@ -24,9 +24,9 @@ const TaskCard = ({ task, index, deleteTask }) => {
             <span onClick={() => deleteTask(task)} style={{ color: "red" }}>
               &nbsp; delete
             </span>
-            <span style={{ border: "1px solid yellow", padding: "1rem" }} {...provided.dragHandleProps}>
-              {" "}
-              drag{" "}
+            <span {...provided.dragHandleProps}>
+              <div className={`${classes.dragHandle} ${classes.marginBottom}`} />
+              <div className={classes.dragHandle} />
             </span>
           </li>
         ) : (
@@ -48,13 +48,3 @@ const TaskCard = ({ task, index, deleteTask }) => {
 };
 
 export default TaskCard;
-
-const useStyles = createUseStyles({
-  listItem: {
-    padding: "2rem",
-    marginTop: "2rem",
-    border: "1px solid red",
-    display: "flex",
-    justifyContent: "space-between",
-  },
-});
