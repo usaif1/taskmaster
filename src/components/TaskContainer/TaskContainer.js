@@ -8,6 +8,7 @@ import { addTask, updateSingleList } from "actions/dbActions";
 
 //imports
 import TaskCard from "components/common/TaskCard/TaskCard";
+import TaskHeading from "./TaskHeading";
 import { useStyles } from "./styles";
 
 const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
@@ -51,19 +52,16 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
     updateSingleList(droppableId, newArr, id);
   };
 
-  console.log(tasks[droppableId].length);
-
   return (
-    <div className={classes.container} onDragOver={(e) => e.preventDefault()} onDrop={(e) => e.preventDefault()}>
-      <div className={classes.headingContainer}>
-        <h3>{title}</h3>
-      </div>
-      {droppableId === "pending" && (
-        <div
-        // onFocus={() => setShowInput(true)}
-        // onBlur={() => setShowInput(false)}
-        >
-          {showInput ? (
+    <>
+      <TaskHeading title={title} />
+      <div className={classes.container} onDragOver={(e) => e.preventDefault()} onDrop={(e) => e.preventDefault()}>
+        {droppableId === "pending" && (
+          <div
+          // onFocus={() => setShowInput(true)}
+          // onBlur={() => setShowInput(false)}
+          >
+            {/* {showInput ? (
             <form onSubmit={onSubmitHandler} style={{ display: "flex", height: "100%" }}>
               <input
                 type="text"
@@ -77,31 +75,25 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
             <p onClick={() => setShowInput(true)} onBlur={() => setShowInput(false)}>
               Add New Task &gt;&gt;
             </p>
-          )}
-        </div>
-      )}
-      <Droppable droppableId={droppableId}>
-        {(provided) => {
-          return (
-            <div
-              style={{
-                overflow: "scroll",
-                height: "40rem",
-                position: "relative",
-                marginTop: "1rem",
-              }}
-            >
-              <ul className={classes.ul} {...provided.droppableProps} ref={provided.innerRef}>
-                {tasks[droppableId].map((task, index) => {
-                  return <TaskCard key={index} task={task} index={index} deleteTask={deleteTask} />;
-                })}
-                {provided.placeholder}
-              </ul>
-            </div>
-          );
-        }}
-      </Droppable>
-    </div>
+          )} */}
+          </div>
+        )}
+        <Droppable droppableId={droppableId}>
+          {(provided) => {
+            return (
+              <div className={classes.listContainer}>
+                <ul className={classes.ul} {...provided.droppableProps} ref={provided.innerRef}>
+                  {tasks[droppableId].map((task, index) => {
+                    return <TaskCard key={index} task={task} index={index} deleteTask={deleteTask} />;
+                  })}
+                  {provided.placeholder}
+                </ul>
+              </div>
+            );
+          }}
+        </Droppable>
+      </div>
+    </>
   );
 };
 
