@@ -5,11 +5,15 @@ import React from "react";
 import AddNew from "./AddNew";
 import { useStyles } from "./styles";
 
-const BottomNav = ({ setStatus }) => {
+const BottomNav = ({ setStatus, setOpen }) => {
   const classes = useStyles();
 
   const changeStatus = (status) => {
     setStatus(status);
+  };
+
+  const openInput = () => {
+    setOpen(true);
   };
 
   return (
@@ -37,7 +41,7 @@ const BottomNav = ({ setStatus }) => {
           </p>
         </div>
       </div>
-      <AddNew />
+      <AddNew onClick={openInput} />
     </>
   );
 };

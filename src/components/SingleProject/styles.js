@@ -66,6 +66,10 @@ export const useStyles = createUseStyles({
     userSelect: "none",
   },
 
+  lowOpacity: {
+    opacity: "0.1",
+  },
+
   /*Add Button*/
 
   btnContainer: {
@@ -85,6 +89,23 @@ export const useStyles = createUseStyles({
     marginTop: "-0.5rem",
     fontSize: "2.4rem",
     color: "white",
+  },
+
+  /*Add input styles*/
+  addInputContainer: {
+    position: "fixed",
+    zIndex: "10",
+    height: "0vh",
+    background: "black",
+    width: "100%",
+    left: "0",
+    bottom: "0",
+    opacity: "0.88",
+    transition: "height 0.5s 0.1s",
+  },
+
+  increaseHeight: {
+    height: "30vh",
   },
 
   "@media only screen and (max-width: 600px)": {

@@ -34,9 +34,9 @@ export const useStyles = createUseStyles({
 
   iconContainer: {
     position: "absolute",
-    right: "0.2rem",
     marginTop: "-1rem",
     cursor: "pointer",
+    marginLeft: "-1rem",
   },
 
   "@media only screen and (max-width: 600px)": {},

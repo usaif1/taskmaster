@@ -15,6 +15,7 @@ import { isMobile } from "actions/general";
 import { Container, CentralHeading, CentralSubheading, BarLoader } from "components/common";
 import TaskContainer from "../TaskContainer/TaskContainer";
 import BottomNav from "./BottomNav";
+import AddInput from "./AddInput";
 import { useStyles } from "./styles";
 
 const SingleProject = () => {
@@ -30,6 +31,7 @@ const SingleProject = () => {
   });
 
   const [status, setStatus] = useState("pending");
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setProjectDetails(id);
@@ -112,7 +114,8 @@ const SingleProject = () => {
                   {status === "completed" && (
                     <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
                   )}
-                  <BottomNav setStatus={setStatus} />
+                  <AddInput setOpen={setOpen} open={open} id={id} tasks={tasks} setTasks={setTasks} />
+                  <BottomNav setStatus={setStatus} setOpen={setOpen} />
                 </DragDropContext>
               </>
             ) : (
