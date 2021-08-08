@@ -36,6 +36,7 @@ export const useStyles = createUseStyles({
     display: "flex",
     justifyContent: "space-around",
     height: "7vh",
+    zIndex: "3",
   },
 
   bottomNavWrapper: {
@@ -63,6 +64,27 @@ export const useStyles = createUseStyles({
     MozUserSelect: "none",
     msUserSelect: "none",
     userSelect: "none",
+  },
+
+  /*Add Button*/
+
+  btnContainer: {
+    position: "fixed",
+    borderRadius: "50%",
+    height: "6.5rem",
+    width: "6.5rem",
+    bottom: "2%",
+    border: "none",
+    background: "linear-gradient(to right, #161616, #222222)",
+    color: "white",
+    zIndex: "-10",
+    left: "41%",
+  },
+
+  plus: {
+    marginTop: "-0.5rem",
+    fontSize: "2.4rem",
+    color: "white",
   },
 
   "@media only screen and (max-width: 600px)": {
