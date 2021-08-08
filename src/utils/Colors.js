@@ -11,6 +11,7 @@ export const Colors = {
   bgRed: "#FF3B3B",
 
   /*bg -gradient*/
+  blackGrad: "linear-gradient(to right, #000000, #3B3B3B)",
   darkRedGrad: "linear-gradient(to right, #d31027, #ea384d)",
   lightGreyGrad: "linear-gradient(to right, #A9A5A5, #CCCCCC)",
   yellowGrad: "linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6)",

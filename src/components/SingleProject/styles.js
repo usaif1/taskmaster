@@ -1,4 +1,8 @@
+//dependencies
 import { createUseStyles } from "react-jss";
+
+//imports
+import { Colors } from "utils/Colors";
 
 export const useStyles = createUseStyles({
   loaderContainer: {
@@ -26,7 +30,7 @@ export const useStyles = createUseStyles({
     position: "fixed",
     bottom: "0",
     width: "100%",
-    background: "linear-gradient(to right, #000000, #434343)",
+    background: Colors.blackGrad,
     left: "0",
     color: "white",
     display: "flex",
@@ -49,6 +53,8 @@ export const useStyles = createUseStyles({
 
   textSize: {
     fontSize: "1.2rem",
+    fontWeight: "600",
+    letterSpacing: "0.6px",
   },
 
   noSelect: {
