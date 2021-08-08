@@ -26,9 +26,7 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
     }
 
     const newTask = addTask(value, id);
-
     const newArr = tasks.pending;
-
     newArr.unshift(newTask);
 
     setTasks({
@@ -53,7 +51,7 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
   };
 
   return (
-    <>
+    <div className={classes.wrapper}>
       <TaskHeading title={title} />
       <div className={classes.container} onDragOver={(e) => e.preventDefault()} onDrop={(e) => e.preventDefault()}>
         {droppableId === "pending" && (
@@ -93,7 +91,7 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
           }}
         </Droppable>
       </div>
-    </>
+    </div>
   );
 };
 

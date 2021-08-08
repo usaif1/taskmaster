@@ -36,6 +36,7 @@ export const useStyles = createUseStyles({
     position: "absolute",
     right: "0.2rem",
     marginTop: "-1rem",
+    cursor: "pointer",
   },
 
   "@media only screen and (max-width: 600px)": {},

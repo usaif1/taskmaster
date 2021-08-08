@@ -11,9 +11,13 @@ export const useStyles = createUseStyles({
     },
   },
 
+  wrapper: {
+    display: "block",
+  },
+
   container: {
-    width: "30%",
-    marginBottom: "5rem",
+    // width: "30%",
+    // marginBottom: "5rem",
   },
   headingContainer: {
     height: "5rem",
@@ -35,6 +39,7 @@ export const useStyles = createUseStyles({
     fontSize: "1.6rem",
     textAlign: "center",
     margin: "0 auto",
+    width: "15vw",
   },
 
   /* Task list container styles */

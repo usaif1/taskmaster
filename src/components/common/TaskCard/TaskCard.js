@@ -1,7 +1,7 @@
 //dependencies
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { XCircle } from "react-feather";
+import { XCircle, ChevronRight, ChevronLeft } from "react-feather";
 
 //actions
 import { isMobile } from "actions/general";
@@ -26,10 +26,20 @@ const TaskCard = ({ task, index, deleteTask }) => {
             </div>
             <div className={classes.descriptionContainer}>
               {task.description}
-              <span {...provided.dragHandleProps}>
-                <div className={`${classes.dragHandle} ${classes.marginBottom}`} />
-                <div className={classes.dragHandle} />
-              </span>
+              {isMobile() && (
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <div>
+                    <ChevronLeft size={20} style={{ marginRight: "2rem" }} />
+                  </div>
+                  <div>
+                    <ChevronRight size={20} style={{ marginRight: "2rem" }} />
+                  </div>
+                  <span {...provided.dragHandleProps}>
+                    <div className={`${classes.dragHandle} ${classes.marginBottom}`} />
+                    <div className={classes.dragHandle} />
+                  </span>
+                </div>
+              )}
             </div>
           </li>
         ) : (
@@ -39,10 +49,10 @@ const TaskCard = ({ task, index, deleteTask }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            {task.description}
-            <span onClick={() => deleteTask(index, task)} style={{ color: "red" }}>
-              &nbsp; delete
-            </span>
+            <div className={classes.iconContainer} onClick={() => deleteTask(task)}>
+              <XCircle fill="#FF3A3A" color={"white"} size={22} />
+            </div>
+            <div className={classes.descriptionContainer}>{task.description}</div>
           </li>
         );
       }}
