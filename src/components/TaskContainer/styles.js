@@ -2,7 +2,7 @@
 import { createUseStyles } from "react-jss";
 
 //imports
-import { Colors } from "utils/Colors";
+// import { Colors } from "utils/Colors";
 
 export const useStyles = createUseStyles({
   "@global": {
@@ -18,15 +18,6 @@ export const useStyles = createUseStyles({
   container: {
     // width: "30%",
     // marginBottom: "5rem",
-  },
-  headingContainer: {
-    height: "5rem",
-    background: "#FF5151",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    borderTopRightRadius: "0.8rem",
-    borderTopLeftRadius: "0.8rem",
   },
   addNewInput: {
     translate: "120px, 50%",
@@ -61,6 +52,9 @@ export const useStyles = createUseStyles({
   "@media only screen and (max-width: 600px)": {
     container: {
       width: "99%",
+    },
+    heading: {
+      width: "initial",
     },
   },
   // "@media only screen and (max-width: 330px)": {
