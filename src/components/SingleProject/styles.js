@@ -100,12 +100,45 @@ export const useStyles = createUseStyles({
     width: "100%",
     left: "0",
     bottom: "0",
-    opacity: "0.88",
-    transition: "height 0.5s 0.1s",
+    opacity: "0.95",
+    transition: "height 0.4s 0.25s",
+    borderTopRightRadius: "2rem",
+    borderTopLeftRadius: "2rem",
   },
 
   increaseHeight: {
-    height: "30vh",
+    height: "20vh",
+  },
+
+  btnAdd: {
+    border: "none",
+    background: "transparent",
+  },
+
+  addInputForm: {
+    display: "flex",
+    alignItems: "center",
+    marginTop: "1rem",
+  },
+
+  input: {
+    width: "30rem",
+    padding: "1rem",
+    border: "none",
+    borderRadius: "0.8rem",
+    height: "2rem",
+    background: "#000000",
+    outline: "none",
+    color: "white",
+    fontWeight:"600",
+    marginLeft: "1rem",
+  },
+
+  ctaContainer: {
+    display: "flex",
+    width: "10rem",
+    justifyContent: "space-evenly",
+    marginRight: "1rem",
   },
 
   "@media only screen and (max-width: 600px)": {
