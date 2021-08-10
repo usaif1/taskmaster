@@ -87,7 +87,7 @@ export const useStyles = createUseStyles({
     borderRadius: "50%",
     height: "6.5rem",
     width: "6.5rem",
-    bottom: "2%",
+    bottom: "1.2rem",
     border: "none",
     background: "linear-gradient(to right, #161616, #222222)",
     color: "white",
