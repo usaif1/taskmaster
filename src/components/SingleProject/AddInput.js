@@ -24,7 +24,7 @@ const AddInput = ({ setOpen, open, id, tasks, setTasks }) => {
     open && inputRef.current.focus();
 
     !open && inputRef.current.blur();
-  }, [open, isVisible]);
+  }, [open]);
 
   const addNewTask = (e) => {
     e.preventDefault();
