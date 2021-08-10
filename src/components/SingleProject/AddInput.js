@@ -54,6 +54,12 @@ const AddInput = ({ setOpen, open, id, tasks, setTasks }) => {
     }
   };
 
+  const closeHandler = (e) => {
+    e.preventDefault();
+    setError("");
+    setOpen(false);
+  };
+
   return (
     <PageVisibility onChange={handleVisibilityChange}>
       <div className={`${classes.addInputContainer} ${open ? classes.increaseHeight : ""}`}>
@@ -72,15 +78,7 @@ const AddInput = ({ setOpen, open, id, tasks, setTasks }) => {
             <button className={classes.btnAdd} type="submit">
               <Check size={20} color="green" strokeWidth={2.5} />
             </button>
-            <button
-              type="button"
-              className={classes.btnAdd}
-              onClick={(e) => {
-                e.preventDefault();
-                setError("");
-                setOpen(false);
-              }}
-            >
+            <button type="button" className={classes.btnAdd} onClick={closeHandler}>
               <X size={20} color="red" strokeWidth={2.5} />
             </button>
           </div>
