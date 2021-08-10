@@ -130,8 +130,9 @@ export const useStyles = createUseStyles({
     background: "#000000",
     outline: "none",
     color: "white",
-    fontWeight:"600",
+    fontWeight: "600",
     marginLeft: "1rem",
+    fontSize: "1.3rem",
   },
 
   ctaContainer: {
@@ -139,6 +140,13 @@ export const useStyles = createUseStyles({
     width: "10rem",
     justifyContent: "space-evenly",
     marginRight: "1rem",
+  },
+
+  error: {
+    color: "#FF5959",
+    fontSize: "1.1rem",
+    marginLeft: "1rem",
+    fontWeight: "600",
   },
 
   "@media only screen and (max-width: 600px)": {

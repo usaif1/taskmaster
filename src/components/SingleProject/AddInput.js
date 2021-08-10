@@ -71,7 +71,10 @@ const AddInput = ({ setOpen, open, id, tasks, setTasks }) => {
             name="newTask"
             placeholder="Add New Task"
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => {
+              setValue(e.target.value);
+              setError(false);
+            }}
             ref={inputRef}
           />
           <div className={classes.ctaContainer}>
@@ -83,7 +86,7 @@ const AddInput = ({ setOpen, open, id, tasks, setTasks }) => {
             </button>
           </div>
         </form>
-        {error && <p style={{ color: "white" }}>{error}</p>}
+        {error && <p className={classes.error}>{error}</p>}
       </div>
     </PageVisibility>
   );
