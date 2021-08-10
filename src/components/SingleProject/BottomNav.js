@@ -2,10 +2,10 @@
 import React from "react";
 
 //imports
-import AddNew from "./AddNew";
+import AddNewBtn from "./AddNewBtn";
 import { useStyles } from "./styles";
 
-const BottomNav = ({ setStatus, setOpen }) => {
+const BottomNav = ({ setStatus, setOpen, open }) => {
   const classes = useStyles();
 
   const changeStatus = (status) => {
@@ -17,8 +17,8 @@ const BottomNav = ({ setStatus, setOpen }) => {
   };
 
   return (
-    <>
-      <div className={classes.bottomNavContainer}>
+    <div>
+      <div className={`${classes.bottomNavContainer} ${open ? classes.hideBottomNav : classes.showBottomNav}`}>
         <div className={classes.bottomNavWrapper}>
           <p
             onClick={() => changeStatus("pending")}
@@ -41,8 +41,8 @@ const BottomNav = ({ setStatus, setOpen }) => {
           </p>
         </div>
       </div>
-      <AddNew onClick={openInput} />
-    </>
+      <AddNewBtn onClick={openInput} open={open} />
+    </div>
   );
 };
 

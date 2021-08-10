@@ -115,7 +115,7 @@ const SingleProject = () => {
                     <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
                   )}
                   <AddInput setOpen={setOpen} open={open} id={id} tasks={tasks} setTasks={setTasks} />
-                  <BottomNav setStatus={setStatus} setOpen={setOpen} />
+                  <BottomNav setStatus={setStatus} setOpen={setOpen} open={open} />
                 </DragDropContext>
               </>
             ) : (

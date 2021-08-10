@@ -26,6 +26,20 @@ export const useStyles = createUseStyles({
 
   /* Bottom Nav styles  */
 
+  bottomNav: {
+    opacity: 0.2,
+  },
+
+  showBottomNav: {
+    bottom: "initial",
+    transition: "bottom 2.5s",
+  },
+
+  hideBottomNav: {
+    bottom: "-10rem !important",
+    transition: "bottom 0.2s",
+  },
+
   bottomNavContainer: {
     position: "fixed",
     bottom: "0",
@@ -64,10 +78,6 @@ export const useStyles = createUseStyles({
     MozUserSelect: "none",
     msUserSelect: "none",
     userSelect: "none",
-  },
-
-  lowOpacity: {
-    opacity: "0.1",
   },
 
   /*Add Button*/

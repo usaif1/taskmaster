@@ -9,7 +9,10 @@ const AddNew = ({ onClick, open }) => {
 
   return (
     <>
-      <button className={classes.btnContainer} onClick={onClick}>
+      <button
+        className={`${classes.btnContainer} ${open ? classes.hideBottomNav : classes.showBottomNav}`}
+        onClick={onClick}
+      >
         <p className={classes.plus}>+</p>
       </button>
     </>

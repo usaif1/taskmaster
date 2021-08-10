@@ -49,7 +49,7 @@ const AddInput = ({ setOpen, open, id, tasks, setTasks }) => {
 
   const handleVisibilityChange = () => {
     if (!isVisible) {
-      inputRef.current.focus();
+      inputRef.current.blur();
       setOpen(false);
     }
   };
