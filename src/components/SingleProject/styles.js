@@ -32,7 +32,7 @@ export const useStyles = createUseStyles({
 
   showBottomNav: {
     bottom: "initial",
-    transition: "bottom 2.5s",
+    transition: "bottom 0.8s",
   },
 
   hideBottomNav: {
@@ -91,7 +91,6 @@ export const useStyles = createUseStyles({
     border: "none",
     background: "linear-gradient(to right, #161616, #222222)",
     color: "white",
-    // zIndex: "-10",
     left: "41%",
   },
 
