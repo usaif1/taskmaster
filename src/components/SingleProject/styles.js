@@ -83,15 +83,16 @@ export const useStyles = createUseStyles({
   /*Add Button*/
 
   btnContainer: {
-    position: "fixed",
+    position: "relative",
     borderRadius: "50%",
     height: "6.5rem",
     width: "6.5rem",
-    bottom: "2vh",
+    bottom: "3vh",
     border: "none",
     background: "linear-gradient(to right, #161616, #222222)",
     color: "white",
-    left: "41%",
+    right: "42%",
+    zIndex: "-1",
   },
 
   plus: {

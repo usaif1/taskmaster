@@ -17,7 +17,7 @@ const BottomNav = ({ setStatus, setOpen, open }) => {
   };
 
   return (
-    <div>
+    <>
       <div className={`${classes.bottomNavContainer} ${open ? classes.hideBottomNav : classes.showBottomNav}`}>
         <div className={classes.bottomNavWrapper}>
           <p
@@ -40,9 +40,9 @@ const BottomNav = ({ setStatus, setOpen, open }) => {
             Completed
           </p>
         </div>
+        <AddNewBtn onClick={openInput} open={open} />
       </div>
-      <AddNewBtn onClick={openInput} open={open} />
-    </div>
+    </>
   );
 };
 

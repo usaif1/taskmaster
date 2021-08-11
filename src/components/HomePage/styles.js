@@ -109,6 +109,7 @@ export const useStyles = createUseStyles({
     listContainer: {
       flexDirection: "column",
       alignItems: "center",
+      marginBottom: "5rem",
     },
     cardContainer: {
       width: "85%",
