@@ -56,6 +56,9 @@ export const useStyles = createUseStyles({
     heading: {
       width: "initial",
     },
+    listContainer: {
+      marginBottom: "6rem",
+    },
   },
   // "@media only screen and (max-width: 330px)": {
   //   ul: {
