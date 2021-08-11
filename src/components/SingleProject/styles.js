@@ -8,6 +8,7 @@ export const useStyles = createUseStyles({
   loaderContainer: {
     display: "flex",
     justifyContent: "center",
+    marginTop: "10rem",
   },
 
   dragContextContainer: {
@@ -160,6 +161,9 @@ export const useStyles = createUseStyles({
   },
 
   "@media only screen and (max-width: 600px)": {
+    loaderContainer: {
+      marginTop: "0",
+    },
     dragContextContainer: {
       display: "block",
     },
