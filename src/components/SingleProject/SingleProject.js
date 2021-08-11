@@ -95,44 +95,46 @@ const SingleProject = () => {
     }
   };
 
-  return (
-    <Container>
-      {!projectDetailsLoading ? (
-        <>
-          <CentralHeading title={projectDetails.title} />
-          <CentralSubheading title={projectDetails.description} />
-          <div className={classes.dragContextContainer}>
-            {isMobile() ? (
-              <>
-                <DragDropContext onDragEnd={onDragEnd}>
-                  {status === "pending" && (
-                    <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
-                  )}
-                  {status === "progress" && (
-                    <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
-                  )}
-                  {status === "completed" && (
-                    <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
-                  )}
-                  <AddInput setOpen={setOpen} open={open} id={id} tasks={tasks} setTasks={setTasks} />
-                  <BottomNav setStatus={setStatus} setOpen={setOpen} open={open} />
-                </DragDropContext>
-              </>
-            ) : (
+  return !projectDetailsLoading ? (
+    <>
+      <CentralHeading title={projectDetails.title} />
+      <CentralSubheading title={projectDetails.description} />
+      <div className={classes.dragContextContainer}>
+        {isMobile() ? (
+          <>
+            <Container>
               <DragDropContext onDragEnd={onDragEnd}>
-                {/* For multiple lists to work correctly, all lists should be inside same context*/}
-                <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
-                <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
-                <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
+                {status === "pending" && (
+                  <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
+                )}
+                {status === "progress" && (
+                  <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
+                )}
+                {status === "completed" && (
+                  <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
+                )}
+                <AddInput setOpen={setOpen} open={open} id={id} tasks={tasks} setTasks={setTasks} />
               </DragDropContext>
-            )}
-          </div>
-        </>
-      ) : (
-        <div className={classes.loaderContainer}>
-          <BarLoader />
-        </div>
-      )}
+            </Container>
+            <BottomNav setStatus={setStatus} setOpen={setOpen} open={open} />
+          </>
+        ) : (
+          <Container>
+            <DragDropContext onDragEnd={onDragEnd}>
+              {/* For multiple lists to work correctly, all lists should be inside same context*/}
+              <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
+              <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
+              <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
+            </DragDropContext>
+          </Container>
+        )}
+      </div>
+    </>
+  ) : (
+    <Container>
+      <div className={classes.loaderContainer}>
+        <BarLoader />
+      </div>
     </Container>
   );
 };

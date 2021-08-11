@@ -17,8 +17,9 @@ const BottomNav = ({ setStatus, setOpen, open }) => {
   };
 
   return (
-    <>
-      <div className={`${classes.bottomNavContainer} ${open ? classes.hideBottomNav : classes.showBottomNav}`}>
+    <div className={`${classes.bottomNav} ${open ? classes.hideBottomNav : classes.showBottomNav}`}>
+      <AddNewBtn onClick={openInput} open={open} />
+      <div className={classes.bottomNavContainer}>
         <div className={classes.bottomNavWrapper}>
           <p
             onClick={() => changeStatus("pending")}
@@ -40,9 +41,8 @@ const BottomNav = ({ setStatus, setOpen, open }) => {
             Completed
           </p>
         </div>
-        <AddNewBtn onClick={openInput} open={open} />
       </div>
-    </>
+    </div>
   );
 };
 

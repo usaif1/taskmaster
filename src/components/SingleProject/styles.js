@@ -28,11 +28,16 @@ export const useStyles = createUseStyles({
   /* Bottom Nav styles  */
 
   bottomNav: {
-    opacity: 0.2,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    position: "fixed",
+    bottom: "0",
+    width: "100%",
   },
 
   showBottomNav: {
-    bottom: "initial",
+    bottom: "0",
     transition: "bottom 0.8s",
   },
 
@@ -42,16 +47,11 @@ export const useStyles = createUseStyles({
   },
 
   bottomNavContainer: {
-    position: "fixed",
-    bottom: "0",
     width: "100%",
     background: Colors.blackGrad,
-    left: "0",
     color: "white",
     display: "flex",
-    justifyContent: "space-around",
     height: "7vh",
-    zIndex: "3",
   },
 
   bottomNavWrapper: {
@@ -84,16 +84,13 @@ export const useStyles = createUseStyles({
   /*Add Button*/
 
   btnContainer: {
-    position: "relative",
     borderRadius: "50%",
     height: "6.5rem",
     width: "6.5rem",
-    bottom: "3vh",
     border: "none",
     background: "linear-gradient(to right, #161616, #222222)",
     color: "white",
-    right: "42%",
-    zIndex: "-1",
+    marginBottom: "-4rem",
   },
 
   plus: {
