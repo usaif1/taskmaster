@@ -4,7 +4,7 @@ import { Droppable } from "react-beautiful-dnd";
 import { useParams } from "react-router-dom";
 
 //actions
-import { updateSingleList } from "actions/dbActions";
+import { updateSingleList, updateMultiLists } from "actions/dbActions";
 
 //imports
 import TaskCard from "components/common/TaskCard/TaskCard";
@@ -28,6 +28,23 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
     updateSingleList(droppableId, newArr, id);
   };
 
+  const changeStatus = (destinationId, selectedTask) => {
+    const newSourceArr = tasks[`${droppableId}`].filter((task) => {
+      return task.id !== selectedTask.id;
+    });
+
+    const newDestArray = Array.from(tasks[`${destinationId}`]);
+    newDestArray.unshift(selectedTask);
+
+    setTasks({
+      ...tasks,
+      [`${droppableId}`]: newSourceArr,
+      [`${destinationId}`]: newDestArray,
+    });
+
+    updateMultiLists(droppableId, newSourceArr, destinationId, newDestArray, id);
+  };
+
   return (
     <div className={classes.wrapper}>
       <TaskHeading title={title} />
@@ -38,7 +55,16 @@ const TaskContainer = ({ title, droppableId, tasks, setTasks }) => {
               <div className={classes.listContainer}>
                 <ul className={classes.ul} {...provided.droppableProps} ref={provided.innerRef}>
                   {tasks[droppableId].map((task, index) => {
-                    return <TaskCard key={index} task={task} index={index} deleteTask={deleteTask} />;
+                    return (
+                      <TaskCard
+                        key={index}
+                        task={task}
+                        index={index}
+                        deleteTask={deleteTask}
+                        droppableId={droppableId}
+                        changeStatus={changeStatus}
+                      />
+                    );
                   })}
                   {provided.placeholder}
                 </ul>

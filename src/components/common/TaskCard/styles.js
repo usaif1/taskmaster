@@ -10,7 +10,7 @@ export const useStyles = createUseStyles({
     boxShadow: `0.1px 0.1px 5px ${Colors.boxShadow}`,
     background: "#ffffff",
     borderRadius: "1rem",
-    fontSize: "1.5rem",
+    fontSize: "1.4rem",
     fontWeight: "600",
     wordBreak: "break-word",
   },

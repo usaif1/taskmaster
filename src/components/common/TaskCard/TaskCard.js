@@ -9,8 +9,53 @@ import { isMobile } from "actions/general";
 //imports
 import { useStyles } from "./styles";
 
-const TaskCard = ({ task, index, deleteTask }) => {
+const TaskCard = ({ task, index, deleteTask, droppableId, changeStatus }) => {
   const classes = useStyles();
+
+  const success = "#25AD00";
+
+  const icon = (task) => {
+    return (
+      <div style={{ display: "flex", alignItems: "center" }}>
+        {droppableId === "pending" && (
+          <ChevronRight
+            color={success}
+            size={20}
+            style={{ marginRight: "1rem" }}
+            onClick={() => changeStatus("progress", task)}
+            strokeWidth="2.5"
+          />
+        )}
+        {droppableId === "progress" && (
+          <>
+            <ChevronLeft
+              color="#FF3A3A"
+              size={20}
+              style={{ marginRight: "1rem" }}
+              onClick={() => changeStatus("pending", task)}
+              strokeWidth="2.5"
+            />
+            <ChevronRight
+              color={success}
+              size={20}
+              style={{ marginRight: "1rem" }}
+              onClick={() => changeStatus("completed", task)}
+              strokeWidth="2.5"
+            />
+          </>
+        )}
+        {droppableId === "completed" && (
+          <ChevronLeft
+            color="#FF3A3A"
+            size={20}
+            style={{ marginRight: "1rem" }}
+            onClick={() => changeStatus("progress", task)}
+            strokeWidth="2.5"
+          />
+        )}
+      </div>
+    );
+  };
 
   return (
     <Draggable
@@ -25,15 +70,10 @@ const TaskCard = ({ task, index, deleteTask }) => {
               <XCircle fill="#FF3A3A" color={"white"} size={22} />
             </div>
             <div className={classes.descriptionContainer}>
-              {task.description}
+              <p style={{ margin: "0", width: "70%" }}>{task.description}</p>
               {isMobile() && (
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <div>
-                    <ChevronLeft size={20} style={{ marginRight: "2rem" }} />
-                  </div>
-                  <div>
-                    <ChevronRight size={20} style={{ marginRight: "2rem" }} />
-                  </div>
+                  {icon(task)}
                   <span {...provided.dragHandleProps}>
                     <div className={`${classes.dragHandle} ${classes.marginBottom}`} />
                     <div className={classes.dragHandle} />

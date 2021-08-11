@@ -4,7 +4,7 @@ import PageVisibility, { usePageVisibility } from "react-page-visibility";
 import { Check, X } from "react-feather";
 
 //actions
-import { addTask } from "actions/dbActions";
+import { addTask, updateSingleList } from "actions/dbActions";
 
 //imports
 import { useStyles } from "./styles";
@@ -39,6 +39,8 @@ const AddInput = ({ setOpen, open, id, tasks, setTasks }) => {
     const newArr = tasks.pending;
     newArr.unshift(newTask);
 
+    updateSingleList("pending", newArr, id); //to maintain order of tasks
+    
     setTasks({
       ...tasks,
       pending: newArr,
