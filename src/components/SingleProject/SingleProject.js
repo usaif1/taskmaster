@@ -120,12 +120,14 @@ const SingleProject = () => {
           </>
         ) : (
           <Container>
-            <DragDropContext onDragEnd={onDragEnd}>
-              {/* For multiple lists to work correctly, all lists should be inside same context*/}
-              <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
-              <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
-              <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
-            </DragDropContext>
+            <div className={classes.taskContainer}>
+              <DragDropContext onDragEnd={onDragEnd}>
+                {/* For multiple lists to work correctly, all lists should be inside same context*/}
+                <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
+                <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
+                <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
+              </DragDropContext>
+            </div>
           </Container>
         )}
       </div>
