@@ -11,8 +11,9 @@ export const useStyles = createUseStyles({
     background: "#ffffff",
     borderRadius: "1rem",
     fontSize: "1.4rem",
-    fontWeight: "600",
+    fontWeight: "400",
     wordBreak: "break-word",
+    maxWidth: "18vw",
   },
 
   dragHandle: {
@@ -39,5 +40,9 @@ export const useStyles = createUseStyles({
     marginLeft: "-1rem",
   },
 
-  "@media only screen and (max-width: 600px)": {},
+  "@media only screen and (max-width: 600px)": {
+    listItem: {
+      maxWidth: "100%",
+    },
+  },
 });
