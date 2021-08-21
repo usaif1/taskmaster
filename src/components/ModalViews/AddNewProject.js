@@ -44,14 +44,29 @@ const AddNewProject = () => {
   return (
     <div>
       <form style={{ display: "flex", flexDirection: "column" }}>
-        <label htmlFor="title" className={classes.label}>
+        {/* <label htmlFor="title" className={classes.label}>
           Project Title
-        </label>
-        <input className={classes.input} type="text" name="title" value={formData.title} onChange={onChangeHandler} />
-        <label htmlFor="description" className={classes.label}>
+        </label> */}
+        <input
+          className={classes.input}
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={onChangeHandler}
+          autoComplete="off"
+          placeholder="Add Project Title"
+        />
+        {/* <label htmlFor="description" className={classes.label}>
           Project Description
-        </label>
-        <textarea className={classes.input} name="description" id="" rows="10" onChange={onChangeHandler} />
+        </label> */}
+        <textarea
+          className={classes.textArea}
+          name="description"
+          id=""
+          rows="10"
+          onChange={onChangeHandler}
+          placeholder="Add Project Description"
+        />
         <div className={classes.btnContainer}>
           <OutlinedButton style={{ ...styles.common, ...styles.cancel }} onClickHandler={cancelHandler}>
             Cancel
