@@ -37,7 +37,6 @@ export const useStyles = createUseStyles({
 
   listContainer: {
     overflow: "scroll",
-    height: "40rem",
     position: "relative",
     marginTop: "1rem",
   },
@@ -57,6 +56,7 @@ export const useStyles = createUseStyles({
       width: "initial",
     },
     listContainer: {
+      height: "40rem",
       marginBottom: "6rem",
     },
   },

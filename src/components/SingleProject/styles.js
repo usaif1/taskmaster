@@ -14,7 +14,7 @@ export const useStyles = createUseStyles({
   taskContainer: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "baseline",
   },
 
   dragContextContainer: {
