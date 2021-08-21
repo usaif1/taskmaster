@@ -49,7 +49,7 @@ const AddInputDesktop = ({ id, tasks, setTasks }) => {
 
   return (
     <Container>
-      <div style={{ display: "flex", justifyContent: "start" }}>
+      <div className={classes.addTaskWrapper}>
         <button disabled={show} className={`${classes.addTask} ${show && classes.fadeOut}`} onClick={onClickHandler}>
           +
         </button>

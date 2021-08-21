@@ -127,6 +127,7 @@ export const useStyles = createUseStyles({
   btnAdd: {
     border: "none",
     background: "transparent",
+    cursor: "pointer",
   },
 
   addInputForm: {
@@ -165,6 +166,11 @@ export const useStyles = createUseStyles({
 
   //add input desktop
 
+  addTaskWrapper: {
+    display: "flex",
+    justifyContent: "center",
+  },
+
   addTask: {
     fontSize: "2.5rem",
     background: "rgb(55, 255, 0, 0.1)",
@@ -182,6 +188,7 @@ export const useStyles = createUseStyles({
     transition: "opacity 0.5s 0.8s",
     position: "relative",
     zIndex: "1",
+    cursor: "pointer",
   },
 
   fadeOut: {
