@@ -163,6 +163,63 @@ export const useStyles = createUseStyles({
     fontWeight: "600",
   },
 
+  //add input desktop
+
+  addTask: {
+    fontSize: "2.5rem",
+    background: "rgb(55, 255, 0, 0.1)",
+    border: "none",
+    width: "3rem",
+    height: "3rem",
+    color: "rgb(0, 189, 9)",
+    borderRadius: "50%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: "1rem",
+    opacity: "1",
+    transition: "opacity 0.5s 0.8s",
+    position: "relative",
+    zIndex: "1",
+  },
+
+  fadeOut: {
+    opacity: "0",
+    transition: "opacity 0.5s",
+  },
+
+  addTaskContainer: {
+    position: "relative",
+    zIndex: "0",
+    display: "flex",
+    alignItems: "center",
+    width: "0rem",
+    opacity: "0",
+    transition: "width 1s, opacity 1s",
+  },
+
+  addTaskInput: {
+    border: "none",
+    borderBottom: "2px solid black",
+    marginLeft: "-3rem",
+    width: "0rem",
+    opacity: "0",
+    transition: "width 1s, opacity 1s",
+    outline: "none",
+    fontSize: "1.6rem",
+    "&::placeholder": {
+      color: "grey",
+      fontSize: "1.2rem",
+    },
+  },
+
+  fadeIn: {
+    opacity: "1",
+    width: "20rem",
+    transition: "width 1s 0.1s, opacity 1s, display 1s",
+  },
+
   "@media only screen and (max-width: 600px)": {
     loaderContainer: {
       marginTop: "0",

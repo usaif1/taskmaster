@@ -16,6 +16,7 @@ import { Container, CentralHeading, CentralSubheading, BarLoader } from "compone
 import TaskContainer from "../TaskContainer/TaskContainer";
 import BottomNav from "./BottomNav";
 import AddInput from "./AddInput";
+import AddInputDesktop from "./AddInputDesktop";
 import { useStyles } from "./styles";
 
 const SingleProject = () => {
@@ -99,6 +100,7 @@ const SingleProject = () => {
     <>
       <CentralHeading title={projectDetails.title} />
       <CentralSubheading title={projectDetails.description} />
+      {!isMobile() && <AddInputDesktop id={id} tasks={tasks} setTasks={setTasks} />}
       <div className={classes.dragContextContainer}>
         {isMobile() ? (
           <>
@@ -119,16 +121,18 @@ const SingleProject = () => {
             <BottomNav setStatus={setStatus} setOpen={setOpen} open={open} />
           </>
         ) : (
-          <Container>
-            <div className={classes.taskContainer}>
-              <DragDropContext onDragEnd={onDragEnd}>
-                {/* For multiple lists to work correctly, all lists should be inside same context*/}
-                <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
-                <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
-                <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
-              </DragDropContext>
-            </div>
-          </Container>
+          <>
+            <Container>
+              <div className={classes.taskContainer}>
+                <DragDropContext onDragEnd={onDragEnd}>
+                  {/* For multiple lists to work correctly, all lists should be inside same context*/}
+                  <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
+                  <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
+                  <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
+                </DragDropContext>
+              </div>
+            </Container>
+          </>
         )}
       </div>
     </>
