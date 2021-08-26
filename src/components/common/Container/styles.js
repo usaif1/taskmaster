@@ -7,6 +7,13 @@ export const useStyles = createUseStyles({
     margin: "auto",
   },
 
+  "@media only screen and (max-width: 1500px)": {
+    container: {
+      width: "85%",
+      margin: "auto",
+    },
+  },
+
   "@media only screen and (max-width: 600px)": {
     container: {
       width: "95%",
