@@ -2,8 +2,7 @@
 export const capitalize = (subheading) => {
   var splitStr = subheading.toLowerCase().split(" ");
   for (var i = 0; i < splitStr.length; i++) {
-    splitStr[i] =
-      splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
   }
   return splitStr.join(" ");
 };
@@ -31,4 +30,14 @@ export const isMobile = () => {
 //get name from email
 export const getNameFromEmail = (emailAddress) => {
   return emailAddress.substring(0, emailAddress.indexOf("@"));
+};
+
+//disable scroll
+export const disableBodyScroll = () => {
+  document.body.style.overflow = "hidden";
+};
+
+//enable scroll
+export const enableBodyScroll = () => {
+  document.body.style.overflow = "unset";
 };
