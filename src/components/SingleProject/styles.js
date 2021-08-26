@@ -169,6 +169,7 @@ export const useStyles = createUseStyles({
   addTaskWrapper: {
     display: "flex",
     justifyContent: "center",
+    marginBottom: "1.2rem",
   },
 
   addTask: {

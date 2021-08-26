@@ -30,7 +30,7 @@ const Modal = (props) => {
             right: "2rem",
             padding: "10px",
           }
-        : { inset: "38.5rem 42rem" };
+        : { inset: "35.5rem 60rem" };
       break;
 
     default:
