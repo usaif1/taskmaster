@@ -13,6 +13,7 @@ import Confirm from "../ModalViews/Confirm";
 import ProjectCard from "./ProjectCard";
 import NewProjectCard from "./NewProjectCard";
 import AddNewProject from "../ModalViews/AddNewProject";
+import NoProjectFound from "./NoProjectFound";
 import { useStyles } from "./styles";
 
 const Home = () => {
@@ -42,8 +43,8 @@ const Home = () => {
         ) : (
           <BarLoader className={classes.BarLoader} />
         )}
+        {!projects.length && !projectsLoading && <NoProjectFound />}
       </div>
-      {!projects.length && !projectsLoading && <p>No projects found. Try adding one</p>}
       <>
         <Modal>
           {modalView === "AddNewProject" ? <AddNewProject /> : null}

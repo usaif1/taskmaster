@@ -17,7 +17,7 @@ const Modal = (props) => {
     case "AddNewProject":
       content = isMobile()
         ? { top: "15%", left: "4%", width: "80%", height: "fit-content" }
-        : { inset: "16.5rem 20rem" };
+        : { inset: "25rem 30rem" };
       break;
 
     case "ConfirmDeleteProject":
