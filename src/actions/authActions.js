@@ -30,7 +30,6 @@ export const signup = (email, password, history, setLoading) => {
 
         history.push("/");
       } catch (err) {
-        debugger;
         alert("Something went wrong!");
         setLoading(false);
         return;
@@ -115,7 +114,6 @@ export const googleLogin = (history, setLoading2) => {
 
 //logout user
 export const logout = (history) => {
-  debugger;
   firebase
     .auth()
     .signOut()

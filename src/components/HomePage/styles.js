@@ -81,6 +81,20 @@ export const useStyles = createUseStyles({
     marginLeft: "5rem",
   },
 
+  /* No Projects */
+  noProjectContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    // border: "1px solid red",
+    padding: "1rem",
+    fontSize: "1.6rem",
+    borderRadius: "1rem",
+    // background: "#FFFD7A",
+    background: "#FFFD8E",
+    color: "#89870A",
+  },
+
   /*Media Queries*/
 
   "@media only screen and (max-width: 1500px)": {
@@ -109,6 +123,7 @@ export const useStyles = createUseStyles({
     listContainer: {
       flexDirection: "column",
       alignItems: "center",
+      marginBottom: "5rem",
     },
     cardContainer: {
       width: "85%",
@@ -140,6 +155,9 @@ export const useStyles = createUseStyles({
     },
     BarLoader: {
       marginLeft: "0",
+    },
+    noProjectContainer: {
+      marginTop: "2rem",
     },
   },
 });

@@ -1,15 +1,61 @@
 //dependencies
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { createUseStyles } from "react-jss";
+import { XCircle, ChevronRight, ChevronLeft } from "react-feather";
 
 //actions
 import { isMobile } from "actions/general";
 
 //imports
+import { useStyles } from "./styles";
 
-const TaskCard = ({ task, index, deleteTask }) => {
+const TaskCard = ({ task, index, deleteTask, droppableId, changeStatus }) => {
   const classes = useStyles();
+
+  const success = "#25AD00";
+
+  const icon = (task) => {
+    return (
+      <div style={{ display: "flex", alignItems: "center" }}>
+        {droppableId === "pending" && (
+          <ChevronRight
+            color={success}
+            size={20}
+            style={{ marginRight: "1rem" }}
+            onClick={() => changeStatus("progress", task)}
+            strokeWidth="2.5"
+          />
+        )}
+        {droppableId === "progress" && (
+          <>
+            <ChevronLeft
+              color="#FF3A3A"
+              size={20}
+              style={{ marginRight: "1rem" }}
+              onClick={() => changeStatus("pending", task)}
+              strokeWidth="2.5"
+            />
+            <ChevronRight
+              color={success}
+              size={20}
+              style={{ marginRight: "1rem" }}
+              onClick={() => changeStatus("completed", task)}
+              strokeWidth="2.5"
+            />
+          </>
+        )}
+        {droppableId === "completed" && (
+          <ChevronLeft
+            color="#FF3A3A"
+            size={20}
+            style={{ marginRight: "1rem" }}
+            onClick={() => changeStatus("progress", task)}
+            strokeWidth="2.5"
+          />
+        )}
+      </div>
+    );
+  };
 
   return (
     <Draggable
@@ -20,14 +66,21 @@ const TaskCard = ({ task, index, deleteTask }) => {
       {(provided) => {
         return isMobile() ? (
           <li className={classes.listItem} ref={provided.innerRef} {...provided.draggableProps}>
-            {task.description}
-            <span onClick={() => deleteTask(index, task)} style={{ color: "red" }}>
-              &nbsp; delete
-            </span>
-            <span style={{ border: "1px solid yellow", padding: "1rem" }} {...provided.dragHandleProps}>
-              {" "}
-              drag{" "}
-            </span>
+            <div className={classes.iconContainer} onClick={() => deleteTask(task)}>
+              <XCircle fill="#FF3A3A" color={"white"} size={22} />
+            </div>
+            <div className={classes.descriptionContainer}>
+              <p style={{ margin: "0", width: "70%" }}>{task.description}</p>
+              {isMobile() && (
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  {icon(task)}
+                  <span {...provided.dragHandleProps}>
+                    <div className={`${classes.dragHandle} ${classes.marginBottom}`} />
+                    <div className={classes.dragHandle} />
+                  </span>
+                </div>
+              )}
+            </div>
           </li>
         ) : (
           <li
@@ -36,10 +89,10 @@ const TaskCard = ({ task, index, deleteTask }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            {task.description}
-            <span onClick={() => deleteTask(index, task)} style={{ color: "red" }}>
-              &nbsp; delete
-            </span>
+            <div className={classes.iconContainer} onClick={() => deleteTask(task)}>
+              <XCircle fill="#FF3A3A" color={"white"} size={22} />
+            </div>
+            <div className={classes.descriptionContainer}>{task.description}</div>
           </li>
         );
       }}
@@ -48,15 +101,3 @@ const TaskCard = ({ task, index, deleteTask }) => {
 };
 
 export default TaskCard;
-
-const useStyles = createUseStyles({
-  listItem: {
-    padding: "2rem",
-    // top: "10px !important",
-    top: "auto !important",
-    marginTop: "2rem",
-    border: "1px solid red",
-    display: "flex",
-    justifyContent: "space-between",
-  },
-});

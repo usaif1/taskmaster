@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 //context
 import { useProject } from "context/ProjectContext/ProjectProvider";
@@ -14,15 +13,11 @@ import { isMobile } from "actions/general";
 
 //imports
 import { Container, CentralHeading, CentralSubheading, BarLoader } from "components/common";
-import TaskContainer from "../TaskCard/TaskContainer";
+import TaskContainer from "../TaskContainer/TaskContainer";
+import BottomNav from "./BottomNav";
+import AddInput from "./AddInput";
+import AddInputDesktop from "./AddInputDesktop";
 import { useStyles } from "./styles";
-import "swiper/swiper-bundle.css";
-
-// import Swiper core and required modules
-import SwiperCore, { EffectCoverflow, Pagination, Virtual } from "swiper/core";
-
-// install Swiper modules
-SwiperCore.use([Pagination, Virtual, EffectCoverflow]);
 
 const SingleProject = () => {
   const { setProjectDetails, projectDetails, projectDetailsLoading } = useProject();
@@ -35,6 +30,9 @@ const SingleProject = () => {
     progress: [],
     completed: [],
   });
+
+  const [status, setStatus] = useState("pending");
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setProjectDetails(id);
@@ -98,50 +96,51 @@ const SingleProject = () => {
     }
   };
 
-  return (
+  return !projectDetailsLoading ? (
+    <>
+      <CentralHeading title={projectDetails.title} />
+      <CentralSubheading title={projectDetails.description} />
+      {!isMobile() && <AddInputDesktop id={id} tasks={tasks} setTasks={setTasks} />}
+      <div className={classes.dragContextContainer}>
+        {isMobile() ? (
+          <>
+            <Container>
+              <DragDropContext onDragEnd={onDragEnd}>
+                {status === "pending" && (
+                  <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
+                )}
+                {status === "progress" && (
+                  <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
+                )}
+                {status === "completed" && (
+                  <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
+                )}
+                <AddInput setOpen={setOpen} open={open} id={id} tasks={tasks} setTasks={setTasks} />
+              </DragDropContext>
+            </Container>
+            <BottomNav setStatus={setStatus} setOpen={setOpen} open={open} />
+          </>
+        ) : (
+          <>
+            <Container>
+              <div className={classes.taskContainer}>
+                <DragDropContext onDragEnd={onDragEnd}>
+                  {/* For multiple lists to work correctly, all lists should be inside same context*/}
+                  <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
+                  <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
+                  <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
+                </DragDropContext>
+              </div>
+            </Container>
+          </>
+        )}
+      </div>
+    </>
+  ) : (
     <Container>
-      {!projectDetailsLoading ? (
-        <>
-          <CentralHeading title={projectDetails.title} />
-          <CentralSubheading title={projectDetails.description} />
-          <div className={classes.dragContextContainer}>
-            {isMobile() ? (
-              <DragDropContext onDragEnd={onDragEnd}>
-                <Swiper
-                  effect="coverflow"
-                  coverflowEffect={{
-                    slideShadows: false,
-                  }}
-                  virtual={true}
-                  focusableElements="span"
-                  noSwipingSelector="span"
-                >
-                  <SwiperSlide virtualIndex={0} key="key1">
-                    <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
-                  </SwiperSlide>
-                  <SwiperSlide virtualIndex={1} key="key2">
-                    <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
-                  </SwiperSlide>
-                  <SwiperSlide virtualIndex={2} key="key3">
-                    <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
-                  </SwiperSlide>
-                </Swiper>
-              </DragDropContext>
-            ) : (
-              <DragDropContext onDragEnd={onDragEnd}>
-                {/* For multiple lists to work correctly, all lists should be inside same context*/}
-                <TaskContainer title="Pending" droppableId="pending" tasks={tasks} setTasks={setTasks} />
-                <TaskContainer title="In Progress" droppableId="progress" tasks={tasks} setTasks={setTasks} />
-                <TaskContainer title="Completed" droppableId="completed" tasks={tasks} setTasks={setTasks} />
-              </DragDropContext>
-            )}
-          </div>
-        </>
-      ) : (
-        <div className={classes.loaderContainer}>
-          <BarLoader />
-        </div>
-      )}
+      <div className={classes.loaderContainer}>
+        <BarLoader />
+      </div>
     </Container>
   );
 };

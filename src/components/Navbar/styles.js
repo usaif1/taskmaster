@@ -8,7 +8,7 @@ export const useStyles = createUseStyles({
 	container: {
 		background: `${Colors.darkBg}`,
 		color: "white",
-		marginBottom: "10rem",
+		marginBottom: "7rem",
 	},
 	navContainer: {
 		background: `${Colors.darkBg}`,

@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 import { useHistory } from "react-router-dom";
 
 //actions
-import { isMobile } from "actions/general";
+import { isMobile, disableBodyScroll, enableBodyScroll } from "actions/general";
 import { isUserSignedIn, logout } from "actions/authActions";
 
 //imports
@@ -22,6 +22,10 @@ const BurgerMenu = () => {
   //handle state change burger menu
   const handleStateChange = (state) => {
     setOpen(state.isOpen);
+
+    if (state.isOpen) disableBodyScroll();
+
+    if (!state.isOpen) enableBodyScroll();
   };
 
   // logout button onClick handler
