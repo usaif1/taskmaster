@@ -86,11 +86,9 @@ export const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    // border: "1px solid red",
     padding: "1rem",
     fontSize: "1.6rem",
     borderRadius: "1rem",
-    // background: "#FFFD7A",
     background: "#FFFD8E",
     color: "#89870A",
   },
@@ -99,7 +97,13 @@ export const useStyles = createUseStyles({
 
   "@media only screen and (max-width: 1500px)": {
     cardContainer: {
-      width: "100%",
+      width: "20%",
+    },
+  },
+
+  "@media only screen and (max-width: 800px)": {
+    cardContainer: {
+      width: "40%",
     },
   },
 
