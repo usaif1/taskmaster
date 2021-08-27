@@ -1,5 +1,5 @@
 //dependencies
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 
@@ -15,7 +15,9 @@ const Routes = () => {
           return (
             <Route exact path={`${route.path}`} id="outer-container" key={uuid()}>
               {route.navbar ? <Navbar /> : null}
-              <div id="page-wrap">{route.component}</div>
+              <div id="page-wrap">
+                <Suspense fallback={<div>Loading...</div>}>{route.component}</Suspense>
+              </div>
             </Route>
           );
         })}

@@ -1,9 +1,7 @@
 //dependencies
-import React, { Suspense } from "react";
+import React from "react";
 
 //imports
-// import { Home, Login, Project, Signup, About } from "./pages";
-
 const Home = React.lazy(() => import("pages/Home"));
 const Signup = React.lazy(() => import("pages/Signup"));
 const Login = React.lazy(() => import("pages/Login"));
@@ -13,47 +11,27 @@ const About = React.lazy(() => import("pages/About"));
 const routes = [
   {
     path: "/",
-    component: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Home />
-      </Suspense>
-    ),
+    component: <Home />,
     navbar: true,
   },
   {
     path: "/signup",
-    component: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Signup />
-      </Suspense>
-    ),
+    component: <Signup />,
     navbar: true,
   },
   {
     path: "/login",
-    component: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Login />
-      </Suspense>
-    ),
+    component: <Login />,
     navbar: true,
   },
   {
     path: "/project/:id",
-    component: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Project />
-      </Suspense>
-    ),
+    component: <Project />,
     navbar: true,
   },
   {
     path: "/about",
-    component: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <About />
-      </Suspense>
-    ),
+    component: <About />,
     navbar: true,
   },
 ];
