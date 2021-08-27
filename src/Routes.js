@@ -13,12 +13,7 @@ const Routes = () => {
       <Switch>
         {routes.map((route) => {
           return (
-            <Route
-              exact
-              path={`${route.path}`}
-              id="outer-container"
-              key={uuid()}
-            >
+            <Route exact path={`${route.path}`} id="outer-container" key={uuid()}>
               {route.navbar ? <Navbar /> : null}
               <div id="page-wrap">{route.component}</div>
             </Route>
